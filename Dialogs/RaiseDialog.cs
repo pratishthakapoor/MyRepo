@@ -19,6 +19,7 @@ using System.Text;
 using ProactiveBot.SentimentAnalysis;
 using ProactiveBot.KeyPhraseExtraction;
 using System.Threading;
+using System.Linq;
 
 namespace Microsoft.Bot.Sample.ProactiveBot 
 {
@@ -59,6 +60,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         // Help intent implemented here to respond if user requires a help on the topic
 
         [LuisIntent("Help")]
+        [LuisIntent("Question")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
             await context.PostAsync(Responses.HelpMessage);
@@ -68,11 +70,12 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         //Intent for handling the wishes response entered by the user
 
         [LuisIntent("Greetings")]
+        [LuisIntent("Name")]
         public async Task Wishes(IDialogContext context, LuisResult result)
         {
             string Greetings = null;
             EntityRecommendation rec;
-            if (result.TryFindEntity("Wishes", out rec)) Greetings = rec.Entity;
+            if (result.TryFindEntity("Wishes", out rec) || result.TryFindEntity("User", out rec)) Greetings = rec.Entity;
 
             if (string.IsNullOrEmpty(Greetings))
             {
@@ -141,18 +144,24 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 await context.PostAsync($"I would require some information to {response} a ticket for you");
                 try
-            {
-                var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
-                context.Call(ticketForm, getKeyPhrases);
-                //context.Call(ticketForm, getUserSentiment);
+                {
+                    var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
+                    context.Call(ticketForm, getKeyPhrases);
+                    //context.Call(ticketForm, getUserSentiment);
 
-            }
-            catch(Exception)
-            {
-                await context.PostAsync($"Some problem occured. You can try again later after some time.");
-                context.Wait(MessageReceived);
-            }
-                
+                }
+                catch(FormCanceledException<TicketModel> cancelled)
+                {
+                    if (cancelled.InnerException == null)
+                        await context.PostAsync($"You quit on {cancelled.Last}");
+                    else
+                        await context.PostAsync($"Soory, I have a problem here");
+                }
+                catch (Exception)
+                {
+                    await context.PostAsync($"Some problem occured. You can try again later after some time.");
+                    context.Wait(MessageReceived);
+                }
             }
         }
 
@@ -249,7 +258,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             var sentence = await result;
             //string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
             string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
-            var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentenceString);
+            var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
             await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
 
             if(sentiment< 0.5)
@@ -265,13 +274,16 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             var sentence = await result;
             string phraseString = sentence.Desc + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DatabaseName;
             var phrases = await KeyPhraseAnalytics.ExtractPhraseAsync(phraseString);
-            string phrasesResult = String.Join(",", phrases.ToArray());
-            await context.PostAsync($"The key phrases extracted are: {phrasesResult}");
+            string phraseResult = String.Join(",", phrases.ToArray());
+            //string new_result = String.Concat(phraseString, phraseResult);
 
-            phrasesResult.GetType();
-            /*var cts = new CancellationTokenSource();
-         
-            await context.Forward(new RaiseDialog(), getUserSentiment, phrasesResult, cts.Token);*/
+            await context.PostAsync($"The key phrases extracted are: {phraseResult},");
+
+            var cts = new CancellationTokenSource();
+
+            //System.Environment.Exit(0);
+
+            //await context.Forward(new RaiseDialog(), getUserSentiment, result, cts.Token);
         }
 
         // Method to contact the user if the sentiment score is less than 0.5 index level
