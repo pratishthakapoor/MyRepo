@@ -1,0 +1,410 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "Ticket",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "Greetings"
+    },
+    {
+      "name": "Help"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Raise Ticket"
+    },
+    {
+      "name": "Ticket - Details"
+    },
+    {
+      "name": "Ticket - Name"
+    },
+    {
+      "name": "Ticket - work"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Require Help"
+    },
+    {
+      "name": "Ticket - Desc"
+    },
+    {
+      "name": "Ticket - User"
+    },
+    {
+      "name": "Ticket Issue"
+    },
+    {
+      "name": "Ticket-Issue"
+    },
+    {
+      "name": "Wishes"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "''",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "bot not working",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 4,
+          "endPos": 6
+        },
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 8,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "close",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "david",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "hello",
+      "intent": "Greetings",
+      "entities": [
+        {
+          "entity": "Wishes",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "help",
+      "intent": "Help",
+      "entities": [
+        {
+          "entity": "Require Help",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "help me",
+      "intent": "Help",
+      "entities": [
+        {
+          "entity": "Require Help",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "hi",
+      "intent": "Greetings",
+      "entities": [
+        {
+          "entity": "Wishes",
+          "startPos": 0,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "hi, how can i help you",
+      "intent": "Help",
+      "entities": [
+        {
+          "entity": "Wishes",
+          "startPos": 0,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "i am facing the problem with bot",
+      "intent": "Ticket - Details",
+      "entities": [
+        {
+          "entity": "Ticket - Desc",
+          "startPos": 5,
+          "endPos": 10
+        },
+        {
+          "entity": "Ticket - Desc",
+          "startPos": 16,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "i am have a problem",
+      "intent": "Ticket - Details",
+      "entities": [
+        {
+          "entity": "Ticket - Desc",
+          "startPos": 12,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "issue",
+      "intent": "Ticket - Details",
+      "entities": [
+        {
+          "entity": "Ticket - Desc",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "kkkkk",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "may i know your name",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 16,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "mmmmm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my name is",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 3,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "nenenjpodis",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "not opening",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 0,
+          "endPos": 2
+        },
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 4,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "not working",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 0,
+          "endPos": 2
+        },
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 4,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "peter",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "please enter your name",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 18,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "problem",
+      "intent": "Ticket - Details",
+      "entities": [
+        {
+          "entity": "Ticket - Desc",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "properly working",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 9,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "raise ticket",
+      "intent": "Raise Ticket",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 6,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "request user to enter there name",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 28,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "require some help",
+      "intent": "Help",
+      "entities": [
+        {
+          "entity": "Require Help",
+          "startPos": 13,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "services not working",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 9,
+          "endPos": 11
+        },
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 13,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "start",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "ticket",
+      "intent": "Raise Ticket",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what is to be done",
+      "intent": "Help",
+      "entities": [
+        {
+          "entity": "Require Help",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "what is your name",
+      "intent": "Ticket - Name",
+      "entities": [
+        {
+          "entity": "Ticket - User",
+          "startPos": 13,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "work",
+      "intent": "Ticket - work",
+      "entities": [
+        {
+          "entity": "Ticket-Issue",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    }
+  ]
+}
