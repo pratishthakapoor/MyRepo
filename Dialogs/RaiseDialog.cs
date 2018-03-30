@@ -155,7 +155,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     if (cancelled.InnerException == null)
                         await context.PostAsync($"You quit on {cancelled.Last}");
                     else
-                        await context.PostAsync($"Soory, I have a problem here");
+                        await context.PostAsync($"Sorry, I have a problem here");
                 }
                 catch (Exception)
                 {
