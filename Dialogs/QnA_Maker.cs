@@ -15,7 +15,6 @@ namespace ProactiveBot.Dialogs
             ConfigurationManager.AppSettings["QnaKnowledgebaseId"], 
             "Sorry, I could't find an answer for that",0.5)))
         {
-
         }
     }
 }

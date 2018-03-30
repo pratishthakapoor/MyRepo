@@ -20,6 +20,7 @@ using ProactiveBot.SentimentAnalysis;
 using ProactiveBot.KeyPhraseExtraction;
 using System.Threading;
 using System.Linq;
+using ProactiveBot.Dialogs;
 
 namespace Microsoft.Bot.Sample.ProactiveBot 
 {
@@ -131,7 +132,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
        [LuisIntent("Raise Ticket")]
        public async Task RaiseTicket(IDialogContext context, LuisResult result)
-        {
+       {
             string response = null;
             EntityRecommendation rec;
             if (result.TryFindEntity("RaiseTicketOption", out rec)) response = rec.Entity;
@@ -146,8 +147,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 try
                 {
                     var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
-                    context.Call(ticketForm, getKeyPhrases);
-                    //context.Call(ticketForm, getUserSentiment);
+                    //context.Call(ticketForm, getKeyPhrases);
+                    context.Call(ticketForm, getUserSentiment);
 
                 }
                 catch(FormCanceledException<TicketModel> cancelled)
@@ -163,7 +164,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     context.Wait(MessageReceived);
                 }
             }
-        }
+       }
 
         // Intent to handle raise issue response given by the user
 
@@ -257,11 +258,42 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var sentence = await result;
             //string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            //string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            string sentenceString = sentence.Desc;
+
+            // To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
+
+            await context.PostAsync("Let me search a my database for a solution to your problem");
+            try
+            {
+                var activity = (Activity)context.MakeMessage();
+                activity.Text = sentenceString;
+
+                var subscriptionKey = ConfigurationManager.AppSettings["QnaSubscriptionkey"];
+                var knowledgeBaseId = ConfigurationManager.AppSettings["QnaKnowledgebaseId"];
+
+                var responseQuery = new QnAMakerDailog.QnAMakerDialog().GetQnAMakerResponse(sentenceString, subscriptionKey, knowledgeBaseId);
+
+                var responseAnswers = responseQuery.answers.FirstOrDefault();
+
+                if (responseAnswers != null && responseAnswers.score >= double.Parse(ConfigurationManager.AppSettings["QnAScore"]))
+                {
+                    await context.PostAsync(responseAnswers.answer);
+                }
+                else
+                {
+                    await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
             var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
             await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
 
-            if(sentiment< 0.5)
+            if(sentiment<= 0.5)
             {
                 PromptDialog.Confirm(context, ResumeAfterFeedbackClarification,"I see it wasn't perfect, can we contact you about this?");
             }
