@@ -262,6 +262,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             string sentenceString = sentence.Desc;
 
             // To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
+            // The QnA maker sends the appropriate response to the user queries 
 
             await context.PostAsync("Let me search a my database for a solution to your problem");
             try

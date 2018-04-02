@@ -9,12 +9,16 @@ using Microsoft.Bot.Builder.Dialogs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ProactiveBot.Dialogs;
+using System.Data.Entity.Infrastructure;
+using ProactiveBot.Models;
+using ProactiveBot.DatabaseConnection;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+
         /// <summary>
         /// POST: api/Messages
         /// receive a message from a user and send replies
@@ -27,6 +31,27 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             if (activity.GetActivityType() == ActivityTypes.Message)
             {
 
+                // await Conversation.SendAsync(activity, () => new RaiseDialog());
+                /*
+                 * Log into the database
+                 */
+
+                //Instantiate the BotData dbContext
+                BotDataEntities1 DB = new BotDataEntities1();
+                //Create a new user log object
+                Table NewUserLog = new Table();
+                NewUserLog.UserID = activity.From.Id;
+                NewUserLog.UserName = activity.From.Name;
+                NewUserLog.TokenRaised = DateTime.UtcNow;
+                NewUserLog.Issue_Details = activity.Text.Truncate(1000);
+                NewUserLog.ServerName = activity.Text.Truncate(500);
+                NewUserLog.MiddlewareService = activity.Text.Truncate(500);
+                NewUserLog.DatbaseName = activity.Text.Truncate(500);
+                //Add the Table object to Table
+                DB.Tables.Add(NewUserLog);
+                // Save the changes to the database 
+                DB.SaveChanges();
+                //Call the root dialog 
                 await Conversation.SendAsync(activity, () => new RaiseDialog());
             }
             else if (activity.Type == ActivityTypes.Event)
