@@ -36,6 +36,18 @@ namespace SimpleEchoBot
 
                 });
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            // Enables creating Data.Activity object for the IMessageActivity object within EntityFrameworkActivityLogger
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Microsoft.Bot.Connector.IMessageActivity, SqlConnection.Activity>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.From.Id))
+                .ForMember(dest => dest.questions, opt => opt.MapFrom(src => src.From.Name))
+                .ForMember(dest => dest.server_details, opt => opt.MapFrom(src => src.From.Name))
+                .ForMember(dest => dest.middleware_details, opt => opt.MapFrom(src => src.From.Properties))
+                .ForMember(dest => dest.database_details, opt => opt.MapFrom(src => src.From.Name));
+            });
         }
     }
 }

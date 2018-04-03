@@ -22,8 +22,6 @@ using System.Threading;
 using System.Linq;
 using ProactiveBot.Dialogs;
 
-using ProactiveBot.DatabaseConnection;
-
 namespace Microsoft.Bot.Sample.ProactiveBot 
 {
     [LuisModel(Constants.LUIS_APP_ID, Constants.LUIS_SUBSCRIPTION_ID)]
