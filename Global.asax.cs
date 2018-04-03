@@ -6,6 +6,7 @@ using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
+using ProactiveBot.Database;
 
 namespace SimpleEchoBot
 {
@@ -48,6 +49,10 @@ namespace SimpleEchoBot
                 .ForMember(dest => dest.middleware_details, opt => opt.MapFrom(src => src.From.Properties))
                 .ForMember(dest => dest.database_details, opt => opt.MapFrom(src => src.From.Name));
             });
+
+            var new_builder = new ContainerBuilder();
+            new_builder.RegisterType<EntityFrameworkActivityLogger>().AsImplementedInterfaces().InstancePerDependency();
+            new_builder.Update(Conversation.Container);
         }
     }
 }

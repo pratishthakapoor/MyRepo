@@ -187,6 +187,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Database\EntityFrameworkActivityLogger.cs" />
     <Compile Include="Dialogs\QnA_Maker.cs" />
     <Compile Include="Dialogs\RaiseTicketDialog.cs" />
     <Compile Include="Internals\Responses.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="SentimentAnalysis\TextClient.cs" />
     <Compile Include="SentimentAnalysis\TextRequest.cs" />
     <Compile Include="SqlConnection\Activity.cs" />
+    <Compile Include="SqlConnection\ConversationDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
