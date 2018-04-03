@@ -21,7 +21,6 @@ using ProactiveBot.KeyPhraseExtraction;
 using System.Threading;
 using System.Linq;
 using ProactiveBot.Dialogs;
-using ProactiveBot.Models;
 using ProactiveBot.DatabaseConnection;
 
 namespace Microsoft.Bot.Sample.ProactiveBot 
@@ -270,7 +269,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
             // Create a reply activity
 
-            Activity replyToConversation = (Activity)context.MakeMessage();
+           /* Activity replyToConversation = (Activity)context.MakeMessage();
 
             //Instantiate the bot data dbContext
 
@@ -301,7 +300,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
+            }*/
 
             await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
 

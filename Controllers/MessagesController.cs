@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ProactiveBot.Dialogs;
 using System.Data.Entity.Infrastructure;
-using ProactiveBot.Models;
 using ProactiveBot.DatabaseConnection;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
