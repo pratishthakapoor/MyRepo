@@ -31,26 +31,36 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             if (activity.GetActivityType() == ActivityTypes.Message)
             {
 
-                // await Conversation.SendAsync(activity, () => new RaiseDialog());
+                //await Conversation.SendAsync(activity, () => new RaiseDialog());
                 /*
                  * Log into the database
                  */
 
                 //Instantiate the BotData dbContext
-                BotDataEntities1 DB = new BotDataEntities1();
+                /*BotDataEntities1 DB = new BotDataEntities1();
                 //Create a new user log object
-                Table NewUserLog = new Table();
-                NewUserLog.UserID = activity.From.Id;
-                NewUserLog.UserName = activity.From.Name;
-                NewUserLog.TokenRaised = DateTime.UtcNow;
-                NewUserLog.Issue_Details = activity.Text.Truncate(1000);
-                NewUserLog.ServerName = activity.Text.Truncate(500);
-                NewUserLog.MiddlewareService = activity.Text.Truncate(500);
-                NewUserLog.DatbaseName = activity.Text.Truncate(500);
-                //Add the Table object to Table
-                DB.Tables.Add(NewUserLog);
-                // Save the changes to the database 
-                DB.SaveChanges();
+                Table NewUserLog = new Table
+                {
+                    UserID = activity.From.Id,
+                    UserName = activity.From.Name,
+                    TokenRaised = DateTime.UtcNow,
+                    Issue_Details = activity.Text.Truncate(1000),
+                    ServerName = activity.Text.Truncate(50),
+                    MiddlewareService = activity.Text.Truncate(50),
+                    DatbaseName = activity.Text.Truncate(50)
+                };
+                try
+                {
+                    //Add the Table object to Table
+                    DB.Tables.Add(NewUserLog);
+                    // Save the changes to the database 
+                    DB.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }*/
+
                 //Call the root dialog 
                 await Conversation.SendAsync(activity, () => new RaiseDialog());
             }

@@ -176,22 +176,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BotData.mdf" />
-    <Content Include="App_Data\BotData_log.ldf">
-      <DependentUpon>BotData.mdf</DependentUpon>
-    </Content>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
-    <Content Include="Models\BotData.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BotData.edmx</DependentUpon>
-      <LastGenOutput>BotData.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BotData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BotData.edmx</DependentUpon>
-      <LastGenOutput>BotData.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -216,24 +202,6 @@
     <Compile Include="KeyPhraseExtraction\KeyPhraseDocumentResult.cs" />
     <Compile Include="KeyPhraseExtraction\KeyPhraseResponse.cs" />
     <Compile Include="KeyPhraseExtraction\KeyPhrasesRequest.cs" />
-    <Compile Include="Models\BotData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BotData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BotData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BotData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BotData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BotData.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Table.cs">
-      <DependentUpon>BotData.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,13 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\BotData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BotData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BotData.edmx.diagram">
-      <DependentUpon>BotData.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\andreowebappproactivescratch4 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\andreowebappproactivescratch4 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\andreowebappproactivescratch8 - Web Deploy.pubxml" />
