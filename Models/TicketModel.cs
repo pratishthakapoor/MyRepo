@@ -18,7 +18,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         public string Assist { get; set; }*/
 
         [Prompt(new string[] { "Give a brief description of your problem" })]
-        public string Desc { get; set; }
+        public string Description { get; set; }
 
         /*[Prompt(new string[] { "To set the priority for your ticket, tell me about how many people are affected with the problem" })]
         public string Priority { get; set; }*/
@@ -41,7 +41,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
             return new FormBuilder<TicketModel>()
                 .Field(nameof(Name), validate: ValidateNameInfo)
-                .Field(nameof(Desc))
+                .Field(nameof(Description))
                 .Field(nameof(ServerName)/*validate: ValidateServerInfo*/)
                 .Field(nameof(MiddlewareName), validate: ValidateMiddlewareInfo)
                 .Field(nameof(DatabaseName), validate: ValidateDatabaseInfo)
@@ -159,7 +159,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         }
 
         private static bool DescriptionEnabled(TicketModel state) =>
-             !string.IsNullOrWhiteSpace(state.ServerName) && !string.IsNullOrWhiteSpace(state.Name) &&  !string.IsNullOrWhiteSpace(state.Desc) && 
+             !string.IsNullOrWhiteSpace(state.ServerName) && !string.IsNullOrWhiteSpace(state.Name) &&  !string.IsNullOrWhiteSpace(state.Description) && 
              !string.IsNullOrWhiteSpace(state.MiddlewareName) && !string.IsNullOrWhiteSpace(state.DatabaseName);
 
         private static bool GetEmailAddress(string response, out string contactInfo)

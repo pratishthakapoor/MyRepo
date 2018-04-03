@@ -259,7 +259,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var sentence = await result;
             // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            string sentenceString = sentence.Description + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
             // string sentenceString = sentence.Desc;
 
             // To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
@@ -344,7 +344,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         private async Task getKeyPhrases(IDialogContext context, IAwaitable<TicketModel> result)
         {
             var sentence = await result;
-            string phraseString = sentence.Desc + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DatabaseName;
+            string phraseString = sentence.Description + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DatabaseName;
             var phrases = await KeyPhraseAnalytics.ExtractPhraseAsync(phraseString);
             string phraseResult = String.Join(",", phrases.ToArray());
             //string new_result = String.Concat(phraseString, phraseResult);
