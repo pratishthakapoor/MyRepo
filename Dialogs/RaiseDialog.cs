@@ -21,6 +21,7 @@ using ProactiveBot.KeyPhraseExtraction;
 using System.Threading;
 using System.Linq;
 using ProactiveBot.Dialogs;
+
 using ProactiveBot.DatabaseConnection;
 
 namespace Microsoft.Bot.Sample.ProactiveBot 
@@ -259,52 +260,14 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var sentence = await result;
             // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            string sentenceString = sentence.Description + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
             // string sentenceString = sentence.Desc;
 
             // To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
             // The QnA maker sends the appropriate response to the user queries 
 
             await context.PostAsync("Let me search a my database for a solution to your problem");
-
-            // Create a reply activity
-
-           /* Activity replyToConversation = (Activity)context.MakeMessage();
-
-            //Instantiate the bot data dbContext
-
-            BotDataEntities1 DB = new BotDataEntities1();
-
-            // Create a new object for the table
-
-            Table NewUserLog = new Table
-            {
-                UserID = replyToConversation.From.Id,
-                UserName = sentence.Name,
-                TokenRaised = DateTime.UtcNow,
-                Issue_Details = sentence.Desc.Truncate(1000),
-                ServerName = sentence.ServerName.Truncate(500),
-                MiddlewareService = sentence.MiddlewareName.Truncate(500),
-                DatbaseName = sentence.DatabaseName.Truncate(500)
-            };
             try
-            {
-                //Add the NewUserLog object to the Table
-
-                DB.Tables.Add(NewUserLog);
-
-                // Save the changes to the database
-
-                DB.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }*/
-
-            await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
-
-            /*try
             {
                 var activity = (Activity)context.MakeMessage();
                 activity.Text = sentenceString;
@@ -321,14 +284,48 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     await context.PostAsync(responseAnswers.answer);
                 }
                 else
-                { 
+                {
+                    // Create a reply activity
 
+                    //Activity replyToConversation = (Activity)context.MakeMessage();
+
+                    //Instantiate the bot data dbContext
+
+                    /* BotDataEntities1 DB = new BotDataEntities1();
+
+                   // Create a new object for the table
+
+                    Table NewUserLog = new Table();
+
+                    NewUserLog.UserID = replyToConversation.From.Id;
+                    NewUserLog.UserName = sentence.Name;
+                    NewUserLog.TokenRaised = DateTime.UtcNow;
+                    NewUserLog.Issue_Details = sentence.Desc.Truncate(1000);
+                    NewUserLog.ServerName = sentence.ServerName.Truncate(500);
+                    NewUserLog.MiddlewareService = sentence.MiddlewareName.Truncate(500);
+                    NewUserLog.DatbaseName = sentence.DatabaseName.Truncate(500);
+                    try
+                     {
+                          //Add the NewUserLog object to the Table
+
+                          DB.Tables.Add(NewUserLog);
+
+                         // Save the changes to the database
+
+                         DB.SaveChanges();
+                      }
+                    catch (Exception e)
+                     {
+                       Console.WriteLine(e.Message);
+                     }*/
+                    await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
                 }
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }*/
+            }
 
             var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
             await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
@@ -344,7 +341,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         private async Task getKeyPhrases(IDialogContext context, IAwaitable<TicketModel> result)
         {
             var sentence = await result;
-            string phraseString = sentence.Description + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DatabaseName;
+            string phraseString = sentence.Desc + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DatabaseName;
             var phrases = await KeyPhraseAnalytics.ExtractPhraseAsync(phraseString);
             string phraseResult = String.Join(",", phrases.ToArray());
             //string new_result = String.Concat(phraseString, phraseResult);
