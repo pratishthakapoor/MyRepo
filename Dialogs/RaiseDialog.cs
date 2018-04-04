@@ -182,7 +182,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             else
             {
                 //await context.PostAsync($"Get back to you as soon as possible");
-                await context.PostAsync($"Just, reverting you there ");
+                //await context.PostAsync($"Just, reverting you there ");
                 context.Call(new RaiseIssueDialog(), ChildDialogComplete);
             }
         }

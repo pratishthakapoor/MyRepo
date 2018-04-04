@@ -43,16 +43,24 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 case "Problem in raising a ticket":
                     await context.PostAsync($"Please wait for a while we are moving you to the raise ticket option");
-                    context.Call(new RaiseDialog(), NewDialogCompleteAsync);
+                    //context.Call(new RaiseDialog(), NewDialogCompleteAsync);
+                    PromptDialog.Text(
+                        context: context,
+                        resume: NewDialogCompleteAsync,
+                        prompt: "Want to raise a ticket",
+                        retry: "Sorry didn't understand that. Please try again");
                     break;
                 case "Mailing Issue":
                     await context.PostAsync($"Please contact us at info@t-systems.com");
+                    context.Done(this);
                     break;
                 case "Printer Issue":
                     await context.PostAsync($"Please coonect to our service help desk at +91 2038005000 ");
+                    context.Done(this);
                     break;
                 case "Not able to contatct support team":
                     await context.PostAsync($"You can contact us at FMB.FMB-FMB-TSINPresales@t-systems.com");
+                    context.Done(this);
                     break;
                 case "Problem in Login":
                       PromptDialog.Text(
