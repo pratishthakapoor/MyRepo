@@ -97,7 +97,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 // Not available in all channels
                 /*string replyMessage = Responses.WelcomeMessage;
                 return message.CreateReply(replyMessage);*/
-                IConversationUpdateActivity conversationUpdateActivity = message as IConversationUpdateActivity;
+               /* IConversationUpdateActivity conversationUpdateActivity = message as IConversationUpdateActivity;
                 if(conversationUpdateActivity != null)
                 {
                     ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
@@ -109,7 +109,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             await connector.Conversations.ReplyToActivityAsync(reply);
                         }
                     }
-                }
+                }*/
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
