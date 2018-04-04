@@ -98,15 +98,15 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 /*string replyMessage = Responses.WelcomeMessage;
                 return message.CreateReply(replyMessage);*/
                IConversationUpdateActivity conversationUpdateActivity = message as IConversationUpdateActivity;
-               IMessageActivity messageActivity = message as IMessageActivity;
-                if(messageActivity != null)
+               //IMessageActivity messageActivity = message as IMessageActivity;
+                if(conversationUpdateActivity != null)
                 {
                     ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
                     foreach(var memeber in conversationUpdateActivity.MembersAdded ?? System.Array.Empty<ChannelAccount>())
                     {
-                        if (memeber.Id == messageActivity.Recipient.Id)
+                        if (memeber.Id == conversationUpdateActivity.Recipient.Id)
                         {
-                            var reply = ((Activity)messageActivity).CreateReply($"Welcome, to Service Chat App");
+                            var reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
                             await connector.Conversations.ReplyToActivityAsync(reply);
                         }
                     }
