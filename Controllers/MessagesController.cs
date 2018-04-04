@@ -115,6 +115,19 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 // Handle add/remove from contact lists
                 // Activity.From + Activity.Action represent what happened
+                IConversationUpdateActivity conversationUpdateActivity = message as IConversationUpdateActivity;
+                if (conversationUpdateActivity != null)
+                {
+                    ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
+                    foreach (var memeber in conversationUpdateActivity.MembersAdded ?? System.Array.Empty<ChannelAccount>())
+                    {
+                        if (memeber.Id == conversationUpdateActivity.Recipient.Id)
+                        {
+                            var reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
+                            await connector.Conversations.ReplyToActivityAsync(reply);
+                        }
+                    }
+                }
             }
             else if (message.Type == ActivityTypes.Typing)
             {
