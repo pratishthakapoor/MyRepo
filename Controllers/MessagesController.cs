@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ProactiveBot.Dialogs;
 using System.Data.Entity.Infrastructure;
+using Microsoft.Bot.Builder.Dialogs.Internals;
+using Autofac;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
@@ -108,7 +110,6 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             else if (message.Type == ActivityTypes.Ping)
             {
             }
-
             return null;
         }
     }

@@ -181,6 +181,7 @@
   <ItemGroup>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
+    <Content Include="images\images.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

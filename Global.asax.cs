@@ -40,7 +40,7 @@ namespace SimpleEchoBot
 
             // Enables creating Data.Activity object for the IMessageActivity object within EntityFrameworkActivityLogger
 
-            AutoMapper.Mapper.Initialize(cfg =>
+            /*AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Microsoft.Bot.Connector.IMessageActivity, SqlConnection.Activity>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.From.Id))
@@ -52,7 +52,7 @@ namespace SimpleEchoBot
 
             var new_builder = new ContainerBuilder();
             new_builder.RegisterType<EntityFrameworkActivityLogger>().AsImplementedInterfaces().InstancePerDependency();
-            new_builder.Update(Conversation.Container);
+            new_builder.Update(Conversation.Container);*/
         }
     }
 }
