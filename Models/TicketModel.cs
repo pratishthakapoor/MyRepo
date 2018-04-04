@@ -25,8 +25,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
         [Prompt(new string[] { "Enter your email address ? " })]
         public string Contact { get; set; }
-
-        [Prompt(new string[] { "Which server are you using ? " })]
+          
         public string ServerName {get; set;}
 
         [Prompt(new string[] { "What middleware services are being used by you ? "})]
