@@ -78,12 +78,12 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             else
             {
-                HandleSystemMessage(activity);
+                HandleSystemMessageAsync(activity);
             }
             return new HttpResponseMessage(System.Net.HttpStatusCode.Accepted);
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        private async Task<Activity> HandleSystemMessageAsync(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
@@ -95,8 +95,21 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 // Handle conversation state changes, like members being added and removed
                 // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
                 // Not available in all channels
-               string replyMessage = Responses.WelcomeMessage;
-               return message.CreateReply(replyMessage);
+                /*string replyMessage = Responses.WelcomeMessage;
+                return message.CreateReply(replyMessage);*/
+                IConversationUpdateActivity conversationUpdateActivity = message as IConversationUpdateActivity;
+                if(conversationUpdateActivity != null)
+                {
+                    ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
+                    foreach(var memeber in conversationUpdateActivity.MembersAdded ?? System.Array.Empty<ChannelAccount>())
+                    {
+                        if (memeber.Id == conversationUpdateActivity.Recipient.Id)
+                        {
+                            var reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
+                            await connector.Conversations.ReplyToActivityAsync(reply);
+                        }
+                    }
+                }
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
