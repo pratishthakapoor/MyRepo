@@ -9,12 +9,18 @@ namespace Microsoft.Bot.Sample.ProactiveBot
     [Serializable]
     public class RaiseIssueDialog : IDialog<object>
     {
+        private const string Options = "Raise Ticket";
         string UserName;
+
+        public enum Choice
+        {
+            RaiseTicket
+        }
 
         // Dictionary being used to show all the bot features to the user
         private readonly IDictionary<string, string> Issueoptions = new Dictionary<string, string>
             {
-                {"1", "Problem in raising a ticket"},
+                //{"1", "Problem in raising a ticket"},
                 {"2", "Mailing Issue"},
                 {"3", "Not able to contatct support team"},
                 {"4", "Printer Issue"},
@@ -41,15 +47,19 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             var replyMessage = response;
             switch(response)
             {
-                case "Problem in raising a ticket":
+                /*case "Problem in raising a ticket":
                     await context.PostAsync($"Please wait for a while we are moving you to the raise ticket option");
-                    //context.Call(new RaiseDialog(), NewDialogCompleteAsync);
-                    PromptDialog.Text(
-                        context: context,
+                    //context.Call(new RaiseDialog(),ChildDialogComplete);
+                    var options = new Choice[] { Choice.RaiseTicket };
+                    var descriptions = new string[] { "Raise Ticket" };
+                    PromptDialog.Choice(
+                        /*context: context,
+                        options: (IEnumerable<Choice>)Enum.GetValues(typeof(Choice)),
                         resume: NewDialogCompleteAsync,
                         prompt: "Want to raise a ticket",
-                        retry: "Sorry didn't understand that. Please try again");
-                    break;
+                        retry: "Sorry didn't understand that. Please try again"
+                        context, NewDialogCompleteAsync, options, "Want to raise a ticket ? ", descriptions : descriptions);
+                    break;*/
                 case "Mailing Issue":
                     await context.PostAsync($"Please contact us at info@t-systems.com");
                     context.Done(this);
@@ -73,19 +83,21 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
+        private async Task NewDialogCompleteAsync(IDialogContext context, IAwaitable<Choice> result)
+        {
+            context.Call(new RaiseDialog(), ChildDialogComplete);
+            var response = await result;
+            Activity myActivity = (Activity)context.Activity;
+            myActivity.Text = response.ToString();
+            await MessageReceived(context, Awaitable.FromItem(myActivity));
+            
+        }
+
         public async Task getUserName(IDialogContext context, IAwaitable<string> result)
         {
             var response = await result;
             UserName = response;
             await context.PostAsync($"We will be contacting you back in sometime");
-        }
-
-        private async Task NewDialogCompleteAsync(IDialogContext context, IAwaitable<object> result)
-        {
-             var response = await result;
-            Activity myActivity = (Activity)context.Activity;
-            myActivity.Text = response.ToString();
-            await MessageReceived(context, Awaitable.FromItem(myActivity));
         }
 
         private Task MessageReceived(IDialogContext context, IAwaitable<Activity> awaitable)

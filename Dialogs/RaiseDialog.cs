@@ -221,7 +221,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             else
             {
-                await context.PostAsync($"Checking the previous raised ticket status");
+                await context.PostAsync($"We couldn't find your previous request. Please reach out to us at FMB.FMB-FMB-TSINPresales@t-systems.com");
             }
         }
 
