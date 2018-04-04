@@ -190,6 +190,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Database\EntityFrameworkActivityLogger.cs" />
     <Compile Include="Dialogs\QnA_Maker.cs" />
+    <Compile Include="Dialogs\RaiseIssueDialog.cs" />
     <Compile Include="Dialogs\RaiseTicketDialog.cs" />
     <Compile Include="Internals\Responses.cs" />
     <Compile Include="Internals\EmailSender.cs" />
