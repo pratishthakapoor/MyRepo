@@ -143,6 +143,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             else
             {
+                string reply;
                 await context.PostAsync($"I would require some information to {response} a ticket for you");
                 try
                 {
@@ -154,9 +155,12 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 catch(FormCanceledException<TicketModel> cancelled)
                 {
                     if (cancelled.InnerException == null)
-                        await context.PostAsync($"You quit on {cancelled.Last}");
+                        //await context.PostAsync($"You quit on {cancelled.Last}");
+                        reply = $"You quit on {cancelled.Last} -- maybe you can finish next time!";
                     else
-                        await context.PostAsync($"Sorry, I have a problem here");
+                        //await context.PostAsync($"Sorry, I have a problem here");
+                        reply = $"Some problem occured. You can try again later after some time";
+                    await context.PostAsync(reply);
                 }
                 catch (Exception)
                 {

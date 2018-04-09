@@ -109,7 +109,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                         {
                             /* var reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
                              await connector.Conversations.ReplyToActivityAsync(reply);*/
-                            Activity reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
+                            Activity reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service ChatBot");
 
                             AdaptiveCard adaptiveCard = new AdaptiveCard();
 
