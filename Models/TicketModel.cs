@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
@@ -50,12 +51,40 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(DatabaseName), validate: ValidateDatabaseInfo)
                 //.Field(nameof(Priority))
                 .Field(nameof(Contact), validate: ValidateContactInformation)
-                .Field(nameof(PhoneContact))
+                .Field(nameof(PhoneContact), validate: ValidatePhoneContact, prompt: "Do you want us to call you")
                 .AddRemainingFields()
                 .Message("According to the responses entered by you I have generated a statement for you that showscase you problem : " +
                  "{Desc} running on server {ServerName}, using {DatabaseName} database and the {MiddlewareName} services used by you.")
                 //"Please enter Yes if this successfully describe your problem.")
                 .Build();
+        }
+
+        private static Task<ValidateResult> ValidatePhoneContact(TicketModel state, object value)
+        {
+            var result = new ValidateResult();
+            string PhoneInfo = string.Empty;
+            if (GetContactInfo((string)value, out PhoneInfo))
+            {
+                result.IsValid = true;
+                result.Value = PhoneInfo;
+                
+            }
+
+            else
+            {
+                result.IsValid = false;
+                result.Feedback = "Please enter a valid contact number";
+            }
+
+
+            var heroCard = new HeroCard
+            {
+                Text = "Do you want us to contact you?",
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.MessageBack, "Call me!", value : "We will call you within 15 mins"),
+                   new CardAction(ActionTypes.MessageBack, "Don't Call", value:"Ok")}
+            };
+            Attachment attachment = heroCard.ToAttachment();
+            return Task.FromResult(result);
         }
 
         private static Task<ValidateResult> ValidateDatabaseInfo(TicketModel state, object value)
@@ -240,6 +269,19 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             if (match.Success)
             {
                 databaseInfo = match.Value;
+                return true;
+            }
+            return false;
+        }
+
+        private static bool GetContactInfo(string value, out string phoneInfo)
+        {
+            phoneInfo = string.Empty;
+
+            var match = Regex.Match(value, @"^[0-9]{10}$");
+            if(match.Success)
+            {
+                phoneInfo = match.Value;
                 return true;
             }
             return false;
