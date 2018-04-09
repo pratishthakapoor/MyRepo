@@ -25,6 +25,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
         [Prompt(new string[] { "Enter your email address ? " })]
         public string Contact { get; set; }
+
+        [Prompt(new string[] { "Enter your contact number"})]
+        public string PhoneContact { get; set; }
           
         public string ServerName {get; set;}
 
@@ -46,6 +49,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(DatabaseName), validate: ValidateDatabaseInfo)
                 //.Field(nameof(Priority))
                 .Field(nameof(Contact), validate: ValidateContactInformation)
+                .Field(nameof(PhoneContact))
                 .AddRemainingFields()
                 .Message("According to the responses entered by you I have generated a statement for you that showscase you problem : " +
                  "{Desc} running on server {ServerName}, using {DatabaseName} database and the {MiddlewareName} services used by you.")
