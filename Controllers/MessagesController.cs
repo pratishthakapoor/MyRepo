@@ -12,6 +12,7 @@ using ProactiveBot.Dialogs;
 using System.Data.Entity.Infrastructure;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Autofac;
+using AdaptiveCards;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
@@ -106,8 +107,58 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     {
                         if (memeber.Id == conversationUpdateActivity.Recipient.Id)
                         {
-                            var reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
-                            await connector.Conversations.ReplyToActivityAsync(reply);
+                            /* var reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
+                             await connector.Conversations.ReplyToActivityAsync(reply);*/
+                            Activity reply = ((Activity)conversationUpdateActivity).CreateReply($"Welcome, to Service Chat App");
+
+                            AdaptiveCard adaptiveCard = new AdaptiveCard();
+
+                            //Add an image to the card
+                            adaptiveCard.Body.Add(new AdaptiveCards.Image()
+                            {
+                                Url = "C:/ServiceChatApp-src/Source/MyRepo/images/images.png",
+                                Size = ImageSize.Large,
+                                Style = ImageStyle.Person,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                                Separation = SeparationStyle.Strong,
+                                Type = "Image"
+                            });
+
+                            // Add text body to the adative card
+                            adaptiveCard.Body.Add(new TextBlock()
+                            {
+                                Text = "I am ServiceChat Bot, designed to resolve your problems. ",
+                                Size = TextSize.Large,
+                                Weight = TextWeight.Lighter,
+                                MaxLines = 2,
+                                Wrap = true,
+                                Color = TextColor.Attention,
+                                IsSubtle = true
+                            });
+
+                            // Add text to start the conversation
+                            adaptiveCard.Body.Add(new TextBlock()
+                            {
+                                Text = "To start the conversation, Please enter Hi",
+                                Size = TextSize.Medium,
+                                Weight = TextWeight.Lighter,
+                                MaxLines = 2,
+                                Wrap = true,
+                                Color = TextColor.Attention,
+                                IsSubtle = true
+                            });
+
+                            //Create an attachment for the adaptive card
+                            Attachment attachment = new Attachment()
+                            {
+                                ContentType = AdaptiveCard.ContentType,
+                                Content = adaptiveCard
+                            };
+
+                            reply.Attachments.Add(attachment);
+
+                            var replytoconversation = await connector.Conversations.SendToConversationAsync(reply);
+                          
                         }
                     }
                 }
