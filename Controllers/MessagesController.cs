@@ -132,7 +132,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                 Weight = TextWeight.Lighter,
                                 MaxLines = 2,
                                 Wrap = true,
-                                Color = TextColor.Attention,
+                                Color = TextColor.Dark,
                                 IsSubtle = true
                             });
 
@@ -144,7 +144,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                 Weight = TextWeight.Lighter,
                                 MaxLines = 2,
                                 Wrap = true,
-                                Color = TextColor.Attention,
+                                Color = TextColor.Dark,
                                 IsSubtle = true
                             });
 
