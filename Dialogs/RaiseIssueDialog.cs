@@ -79,6 +79,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                         prompt: "Please enter your email address here",
                         retry: "Sorry didn't understand that. Please try again"
                      );
+                    context.Done(this);
                    break;
             }
         }
