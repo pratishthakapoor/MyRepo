@@ -92,7 +92,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
               await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
 
               if (sentiment < 0.5)
-              {
+              { 
                   PromptDialog.Confirm(context, ResumeAfterFeedbackClarification, "I see it wasn't perfect, can we contact you about this?");
               }
               context.Done(this);
