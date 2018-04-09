@@ -116,7 +116,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             //Add an image to the card
                             adaptiveCard.Body.Add(new AdaptiveCards.Image()
                             {
-                                Url = "https://creativemarket.com/microvector/140301-customer-service-flat-icon",
+                                Url = "C:/ServiceChatApp-src/Source/MyRepo/images/images.png",
                                 Size = ImageSize.Large,
                                 Style = ImageStyle.Person,
                                 HorizontalAlignment = HorizontalAlignment.Center,
