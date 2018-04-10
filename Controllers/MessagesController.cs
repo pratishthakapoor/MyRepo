@@ -116,7 +116,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             //Add an image to the card
                             adaptiveCard.Body.Add(new AdaptiveCards.Image()
                             {
-                                Url = "C:/ServiceChatApp-src/Source/MyRepo/images/images.png",
+                                Url = "https://ansiblergdiag813.blob.core.windows.net/chat-bot-images/images.png",
                                 Size = ImageSize.Large,
                                 Style = ImageStyle.Person,
                                 HorizontalAlignment = HorizontalAlignment.Center,
