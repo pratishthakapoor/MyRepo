@@ -85,7 +85,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
               var response = await cloudProvider;
               VirtualCloudProvider = response.ToString();
-            await context.PostAsync(String.Format("Your request for virtual machine creation is under progress"));
+            await context.PostAsync(String.Format("Your request for virtual machine creation is under progress.We will update you via Email."));
                   //"Your Virtual Mchine {0} is ready to run on {1} and supports {2} platform.", VirtualName, VirtualCloudProvider, VirtualOSName ));
               var sentence = response;
               var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
