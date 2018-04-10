@@ -33,10 +33,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         // Dictionary being used to show all the bot features to the user
         private readonly IDictionary<string, string> options = new Dictionary<string, string>
             {
-                {"1", "Virtual Machine Setup"},
-                {"2", "Raise Ticket"},
+                {"1", "Raise Ticket"},
+                {"2", "Virtual Machine Setup"},
                 {"3", "Raise Issue"},
-                {"4", "Check Ticket Status"},
+                {"4", "Check previous raised Ticket Status"},
             };
 
         //None intent being called if user response is Invalid
@@ -44,7 +44,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         [LuisIntent("None")]
         [LuisIntent("")]
         public async Task None(IDialogContext context, LuisResult result)
-        {
+        { 
             string Empty = null;
             EntityRecommendation rec;
             if (result.TryFindEntity("Null", out rec)) Empty = rec.Entity;

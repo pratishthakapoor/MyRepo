@@ -51,7 +51,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(DatabaseName), validate: ValidateDatabaseInfo)
                 //.Field(nameof(Priority))
                 .Field(nameof(Contact), validate: ValidateContactInformation)
-                .Field(nameof(PhoneContact), validate: ValidatePhoneContact, prompt: "Do you want us to call you")
+                .Field(nameof(PhoneContact))
                 .AddRemainingFields()
                 .Message("According to the responses entered by you I have generated a statement for you that showscase you problem : " +
                  "{Desc} running on server {ServerName}, using {DatabaseName} database and the {MiddlewareName} services used by you.")
@@ -77,13 +77,13 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
 
 
-            var heroCard = new HeroCard
+            /*var heroCard = new HeroCard
             {
                 Text = "Do you want us to contact you?",
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.MessageBack, "Call me!", value : "We will call you within 15 mins"),
                    new CardAction(ActionTypes.MessageBack, "Don't Call", value:"Ok")}
             };
-            Attachment attachment = heroCard.ToAttachment();
+            Attachment attachment = heroCard.ToAttachment();*/
             return Task.FromResult(result);
         }
 
