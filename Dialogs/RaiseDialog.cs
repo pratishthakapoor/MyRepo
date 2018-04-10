@@ -22,6 +22,7 @@ using System.Threading;
 using System.Linq;
 using ProactiveBot.Dialogs;
 using Microsoft.Bot.Sample.ProacticeBot;
+using System.Data.SqlClient;
 
 namespace Microsoft.Bot.Sample.ProactiveBot 
 {
@@ -325,6 +326,27 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                      {
                        Console.WriteLine(e.Message);
                      }*/
+                    try
+                    {
+                        string connectionEstablish = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
+
+                        SqlConnection connection = new SqlConnection(connectionEstablish);
+
+                        connection.Open();
+                        if (connection.State == System.Data.ConnectionState.Open)
+                        {
+                            Console.WriteLine("Connection Success");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not connected");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
                 }
             }

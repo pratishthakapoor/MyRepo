@@ -210,6 +210,11 @@
     <Compile Include="KeyPhraseExtraction\KeyPhraseDocumentResult.cs" />
     <Compile Include="KeyPhraseExtraction\KeyPhraseResponse.cs" />
     <Compile Include="KeyPhraseExtraction\KeyPhrasesRequest.cs" />
+    <Compile Include="Migrations\201804101008552_InitialSetup.cs" />
+    <Compile Include="Migrations\201804101008552_InitialSetup.Designer.cs">
+      <DependentUpon>201804101008552_InitialSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TicketModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -234,8 +239,6 @@
     <Compile Include="SentimentAnalysis\TextAnalyticsService.cs" />
     <Compile Include="SentimentAnalysis\TextClient.cs" />
     <Compile Include="SentimentAnalysis\TextRequest.cs" />
-    <Compile Include="SqlConnection\Activity.cs" />
-    <Compile Include="SqlConnection\ConversationDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -254,6 +257,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804101008552_InitialSetup.resx">
+      <DependentUpon>201804101008552_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

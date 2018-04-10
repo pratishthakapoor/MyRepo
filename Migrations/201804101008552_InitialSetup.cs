@@ -1,14 +1,14 @@
-namespace SqlConnection.Migrations
+namespace ProactiveBot.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class IntialSetup : DbMigration
+    public partial class InitialSetup : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Activities",
+                "dbo.BotDetails",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
@@ -24,7 +24,7 @@ namespace SqlConnection.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Activities");
+            DropTable("dbo.BotDetails");
         }
     }
 }
