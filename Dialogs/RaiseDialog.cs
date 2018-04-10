@@ -364,7 +364,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         private async Task ResumeAfterFeedbackClarification(IDialogContext context, IAwaitable<bool> result)
         {
             var confirmation = await result;
-            await context.PostAsync(confirmation ? "We'll call you!" : "We won't contact you.");
+            await context.PostAsync(confirmation ? "We'll call you!" : "Thanks for your input, have a good day");
             context.Done(this);
         }
 
