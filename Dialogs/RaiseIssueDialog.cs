@@ -79,7 +79,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                         prompt: "Please enter your email address here",
                         retry: "Sorry didn't understand that. Please try again"
                      );
-                    context.Done(this);
+                    //context.Done(this)
                    break;
             }
         }
@@ -99,6 +99,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             var response = await result;
             UserName = response;
             await context.PostAsync($"We will be contacting you back in sometime");
+            context.Done(this);
         }
 
         private Task MessageReceived(IDialogContext context, IAwaitable<Activity> awaitable)

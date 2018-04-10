@@ -21,7 +21,19 @@ namespace Microsoft.Bot.Sample.ProacticeBot
 	{
 		public async Task StartAsync(IDialogContext context)
 		{
-			
+            PromptDialog.Text(
+                context: context,
+                resume: getTicketNo,
+                prompt: "Please provide ticket number",
+                retry: "Please try again later"
+                );
 		}
-	}
+
+        private async Task getTicketNo(IDialogContext context, IAwaitable<string> result)
+        {
+            var response = await result;
+            await context.PostAsync("We are checking in our database, we will get back to you");
+            context.Done(this);
+        }
+    }
 }

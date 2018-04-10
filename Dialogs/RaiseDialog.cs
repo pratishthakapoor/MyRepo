@@ -39,6 +39,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 {"4", "Check previous raised Ticket Status"},
             };
 
+        public IDialog<object> GenerateStatusDialog { get; private set; }
+
         //None intent being called if user response is Invalid
 
         [LuisIntent("None")]
@@ -225,7 +227,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             else
             {
-                await context.PostAsync($"We couldn't find your previous request. Please reach out to us at FMB.FMB-FMB-TSINPresales@t-systems.com");
+                context.Call(GenerateStatusDialog, ChildDialogComplete);
+                //await context.PostAsync($"We couldn't find your previous request. Please reach out to us at FMB.FMB-FMB-TSINPresales@t-systems.com");
             }
         }
 
