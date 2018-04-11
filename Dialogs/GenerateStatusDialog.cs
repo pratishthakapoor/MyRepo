@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.IO;  
 using System.Web;  
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Microsoft.Bot.Sample.ProacticeBot
 {
@@ -32,7 +33,74 @@ namespace Microsoft.Bot.Sample.ProacticeBot
         private async Task getTicketNo(IDialogContext context, IAwaitable<string> result)
         {
             var response = await result;
-            await context.PostAsync("We are checking in our database, we will get back to you");
+            //await context.PostAsync("We are checking in our database, we will get back to you");
+
+            /**
+             * Connect to the database to retrieve the ticket details 
+             **/
+
+            string establishConnection = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
+
+            SqlConnection sqlConnection = new SqlConnection(establishConnection);
+
+            /**
+             * Open the connection to the SQL database 
+             **/
+            sqlConnection.Open();
+
+            /**
+             * SQL Select query to retireve the ticket status and details
+             **/
+            //var SelectQuery = @"SELECT Id from dbo.BotDetails";
+
+
+            try
+            {
+                SqlCommand selectCommand = new SqlCommand(@"SELECT Id from dbo.BotDetails", sqlConnection);
+
+                // Call to the SQL data reader
+
+                SqlDataReader dataReader = selectCommand.ExecuteReader();
+
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        String retrieveId = dataReader.GetInt32(0).ToString();
+
+                        /**
+                         * the if condition checks the wether the Ticket Id enetered by the user matches the id stored in the DB
+                         **/
+
+                        if (retrieveId == response)
+                        {
+                            Console.WriteLine("Perfect Match occured");
+                        }
+
+                        else
+                        {
+                            await context.PostAsync("We have not found any details against the given ticket id. Please check the details.");
+                        }
+                    }
+                }
+
+                // close the data reader
+                dataReader.Close();
+
+                //close the sql connection to the database
+
+                sqlConnection.Close();
+            }
+
+            /**
+             * Catch any unhandle exception thrown by the try block
+             **/
+
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             context.Done(this);
         }
     }
