@@ -51,18 +51,16 @@ namespace Microsoft.Bot.Sample.ProacticeBot
             /**
              * SQL Select query to retireve the ticket status and details
              **/
-            //var SelectQuery = @"SELECT Id from dbo.BotDetails";
+            var SelectQuery = @"SELECT Id from dbo.BotDetails WHERE Id = @Id";
 
 
             try
             {
-                SqlCommand selectCommand = new SqlCommand(@"SELECT Id from dbo.BotDetails", sqlConnection);
+                SqlCommand selectCommand = new SqlCommand(SelectQuery, sqlConnection);
 
                 // Call to the SQL data reader
 
-                SqlDataReader dataReader = selectCommand.ExecuteReader();
-
-                if (dataReader.HasRows)
+               using(SqlDataReader dataReader = selectCommand.ExecuteReader())
                 {
                     while (dataReader.Read())
                     {
@@ -82,10 +80,10 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                             await context.PostAsync("We have not found any details against the given ticket id. Please check the details.");
                         }
                     }
-                }
 
-                // close the data reader
-                dataReader.Close();
+                    // close the data reader
+                    dataReader.Close();
+                }
 
                 //close the sql connection to the database
 
