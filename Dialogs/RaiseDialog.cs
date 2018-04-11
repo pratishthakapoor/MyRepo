@@ -300,8 +300,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var sentence = await result;
             // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
-            // string sentenceString = sentence.Desc;
+            //string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            string sentenceString = sentence.Desc;
 
             /**
              * To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
@@ -319,7 +319,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                  **/
 
                 var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
-                var sentimentScore = Math.Round(sentiment * 10, 1)/10;
+                var sentimentScore = Math.Round(sentiment * 100, 1)/10;
 
                 /**
                  * Query to check the user issue in the QnA maker knowledge base
@@ -392,7 +392,31 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             var DBresult = insertCommand.ExecuteNonQuery();
                             if (DBresult > 0)
                             {
-                                await context.PostAsync("Your ticket has been raised successfully, we will share the details with you soon");
+                                connection.Close();
+
+                                string ReconnectionEstablish = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
+
+                                SqlConnection conn = new SqlConnection(ReconnectionEstablish);
+
+                                conn.Open();
+
+                                var selectTicketId = "Select Id from dbo.BotDetails WHERE UserName = @UserName";
+
+                                SqlCommand selectCommand = new SqlCommand(selectTicketId, conn);
+
+                                selectCommand.Parameters.Add("@UserName", sentence.Name);
+
+                                using (SqlDataReader queryReader = selectCommand.ExecuteReader())
+                                {
+                                    
+                                    while (queryReader.Read())
+                                    {
+                                        String retrieveId = queryReader.GetInt32(0).ToString();
+                                        await context.PostAsync("Your ticket has been raised successfully, " + retrieveId + " your token id for the raised ticket");
+                                    }
+                                    
+                                }
+                                    
                             }
 
                             else
@@ -417,7 +441,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     catch(Exception e)
                     {
                         Console.WriteLine(e.Message);
-                    } 
+                    }
+
+                    context.Done(this);
                 }
 
                 /**
