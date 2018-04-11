@@ -29,10 +29,17 @@ namespace Microsoft.Bot.Sample.ProactiveBot
     [LuisModel(Constants.LUIS_APP_ID, Constants.LUIS_SUBSCRIPTION_ID)]
     [Serializable]
 
+    /**
+     * Raise Dialog class works as the root dialog for this project 
+     **/
+
     public class RaiseDialog : LuisDialog<object>
     {
 
-        // Dictionary being used to show all the bot features to the user
+        /**
+         * Dictionary being used to show all the bot features to the user
+         **/
+
         private readonly IDictionary<string, string> options = new Dictionary<string, string>
             {
                 {"1", "Raise Ticket"},
@@ -42,7 +49,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             };
 
 
-        //None intent being called if user response is Invalid
+        /**
+         * None intent being called if user response is Invalid
+         **/
 
         [LuisIntent("None")]
         [LuisIntent("")]
@@ -61,7 +70,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        // Help intent implemented here to respond if user requires a help on the topic
+        /** Help intent implemented here to respond if user requires a help on the topic
+         **/
 
         [LuisIntent("Help")]
         [LuisIntent("Question")]
@@ -71,7 +81,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             context.Wait(MessageReceived);
         }
 
-        //Intent for handling the wishes response entered by the user
+        /**
+         * Intent for handling the wishes response entered by the user
+         */
 
         [LuisIntent("Greetings")]
         [LuisIntent("Name")]
@@ -101,7 +113,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        //Method to hold the responses enterd by the user
+        /**
+         * Method to hold the responses enterd by the user
+         * */
 
         private async Task ChoiceRecievedAsync(IDialogContext context, IAwaitable<object> result)
         {
@@ -111,7 +125,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             await MessageReceived(context, Awaitable.FromItem(myActivity));
         }
        
-        // Intent to handle the Virtual Machine setup response
+        /**
+         * Intent to handle the Virtual Machine setup response
+         **/
 
        [LuisIntent("Virtual Machine")]  
        public async Task VirtualMachine(IDialogContext context, LuisResult result)
@@ -131,7 +147,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        // Intent to handle the Raise ticket responses 
+        /**
+         * Intent to handle the Raise ticket responses 
+         **/
 
        [LuisIntent("Raise Ticket")]
        public async Task RaiseTicket(IDialogContext context, LuisResult result)
@@ -173,7 +191,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
        }
 
-        // Intent to handle raise issue response given by the user
+        /**
+         * Intent to handle raise issue response given by the user
+         **/
 
         [LuisIntent("Raise Issue")]
         public async Task RaiseIssue(IDialogContext context, LuisResult result)
@@ -194,7 +214,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        //Luis Intent that handles the user negative responses
+        /**
+         * Luis Intent that handles the user negative responses
+         **/
+
         [LuisIntent("NegResponse")]
         public async Task HandleNegResponse(IDialogContext context, LuisResult result)
         { 
@@ -212,7 +235,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        // Intent to handle ticket status response input by the user
+        /**
+         * Intent to handle ticket status response like appreciation and confirmation like ok, okay, hmm, fine
+         **/
 
         [LuisIntent("TicketStatus")]
         public async Task CheckTicketStatus(IDialogContext context, LuisResult result)
@@ -233,7 +258,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        //Intent to handle the user leaving responses input by the user 
+        /**
+         * Intent to handle the user positive responses
+         **/
 
         [LuisIntent("Appreciate")]
         public async Task LeavingResponses(IDialogContext context, LuisResult result)
@@ -253,7 +280,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
         }
 
-        // Method to handle the confirm Prompt Dialog
+        /**
+         * Method to handle the confirm Prompt Dialog
+         * Checks wether user require a help or not
+         **/
 
         private async Task ResumeAfterConfirmation(IDialogContext context, IAwaitable<bool> result)
         {
@@ -262,7 +292,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
         }
 
-        // Method to calculate the user sentiment score
+        /**
+         * Method to calculate the user sentiment score
+         **/
 
         private async Task getUserSentiment(IDialogContext context, IAwaitable<TicketModel> result)
         {
@@ -287,7 +319,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                  **/
 
                 var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
-                var sentimentScore = Math.Round(sentiment * 100, 1)/10;
+                var sentimentScore = Math.Round(sentiment * 10, 1)/10;
+
                 /**
                  * Query to check the user issue in the QnA maker knowledge base
                  **/
