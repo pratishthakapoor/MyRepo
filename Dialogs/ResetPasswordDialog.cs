@@ -10,6 +10,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
     {
         String CustomerId;
         String ServerDetails;
+        String EmailId;
+
         /*public IDictionary<string, string> VMOptions = new Dictionary<string, string>
         {
             {"1", "New VM creation" },
@@ -42,7 +44,19 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var response = await Details;
             ServerDetails = response;
+            PromptDialog.Text(
+                context,
+                resume: getUserEmailId,
+                prompt: "Please provide your Email Id",
+                retry : "I didn't understand that, Please try again"
+                );
+        }
 
+        private async Task getUserEmailId(IDialogContext context, IAwaitable<string> Email)
+        {
+            var response = await Email;
+            EmailId = response;
+            await context.PostAsync("Password has been reset successfully, you will recieve a email please confirm after login.");
             context.Done(this);
         }
     }

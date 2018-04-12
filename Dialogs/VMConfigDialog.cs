@@ -34,6 +34,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             switch(message)
             {
                 case "New VM creation":
+                    await context.PostAsync($"I would require some details to create a VM for you");
                     context.Call(new FormDialog(), ChildDialogComplte);
                 break;
                 case "Adding storage to an existing VM":

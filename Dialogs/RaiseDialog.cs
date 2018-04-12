@@ -143,7 +143,6 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             else
             {
-                await context.PostAsync($"I would require some details to create a VM for you");
                 context.Call(new VMConfigDialog(), ChildDialogComplete);
             }
         }
@@ -290,7 +289,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             string resetPwd = null;
             EntityRecommendation rec;
-            if (result.TryFindEntity("ServerPwdOptionn", out rec)) resetPwd = rec.Entity;
+            if (result.TryFindEntity("ServerPwdOption", out rec)) resetPwd = rec.Entity;
 
             if(string.IsNullOrEmpty(resetPwd))
             {
