@@ -48,15 +48,16 @@ namespace Microsoft.Bot.Sample.ProacticeBot
              **/
             sqlConnection.Open();
 
-            /**
-             * SQL Select query to retireve the ticket status and details
-             **/
-            var SelectQuery = @"SELECT Id from dbo.BotDetails WHERE Id = @Id";
-
-
             try
             {
+                /**
+             * SQL Select query to retireve the ticket status and details
+             **/
+                var SelectQuery = @"SELECT Id from dbo.BotDetails WHERE Id = @Id";
+
                 SqlCommand selectCommand = new SqlCommand(SelectQuery, sqlConnection);
+
+                selectCommand.Parameters.AddWithValue("@Id", response);
 
                 // Call to the SQL data reader
 
