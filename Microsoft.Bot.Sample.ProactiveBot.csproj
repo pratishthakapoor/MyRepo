@@ -195,6 +195,7 @@
     <Compile Include="Dialogs\QnA_Maker.cs" />
     <Compile Include="Dialogs\RaiseIssueDialog.cs" />
     <Compile Include="Dialogs\RaiseTicketDialog.cs" />
+    <Compile Include="Dialogs\ResetPasswordDialog.cs" />
     <Compile Include="Internals\Responses.cs" />
     <Compile Include="Internals\EmailSender.cs" />
     <Compile Include="Dialogs\ProactiveDialog.cs" />

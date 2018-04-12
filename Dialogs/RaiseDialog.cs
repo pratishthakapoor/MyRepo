@@ -43,9 +43,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         private readonly IDictionary<string, string> options = new Dictionary<string, string>
             {
                 {"1", "Raise Ticket"},
-                {"2", "Virtual Machine Setup"},
+                {"2", "Virtual Machine Configuration"},
                 {"3", "Raise Issue"},
                 {"4", "Check previous raised Ticket Status"},
+                {"5", "Server Password Reset" },
             };
 
 
@@ -277,6 +278,27 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 await context.PostAsync($"I am happy that you liked our services. \r Do you require any further aasistance");
                 PromptDialog.Confirm(context, ResumeAfterConfirmation, "What is your choice ?");
+            }
+        }
+
+        /**
+         * Method to handle the password reset request for the Servers
+         **/
+
+        [LuisIntent("Reset Password")]
+        public async Task ServerResetPassword(IDialogContext context, LuisResult result)
+        {
+            string resetPwd = null;
+            EntityRecommendation rec;
+            if (result.TryFindEntity("ServerPwdOptionn", out rec)) resetPwd = rec.Entity;
+
+            if(string.IsNullOrEmpty(resetPwd))
+            {
+                await context.PostAsync($"I didn't understand you");
+            }
+            else
+            {
+                context.Call(new ResetPasswordDialog(), ChildDialogComplete);
             }
         }
 
