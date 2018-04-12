@@ -53,64 +53,59 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             
             public virtual async Task getVmName(IDialogContext context, IAwaitable<string> VMname)
             {
-              var response = await VMname;
-              VirtualName = response;
-              PromptDialog.Choice(
-                context : context,
-                options : (IEnumerable<ChoiceOS>)Enum.GetValues(typeof(ChoiceOS)),
-                resume : getChooseOS,
-                prompt: "Which OS do you choose ? ",
-                retry : "Oops, some error occured.Please select again",
-                promptStyle: PromptStyle.Auto
-              );
+                var response = await VMname;
+                VirtualName = response;
+                PromptDialog.Text(
+                context,
+                this.getVMId,
+                prompt: "Please provide an ID for your VM",
+                 retry: "I didn't understand that,Please try again"
+                );
             }
-            
-            // Method that allows the user to choose the OS platform for their VM
-            
-            public virtual async Task getChooseOS(IDialogContext context, IAwaitable<ChoiceOS> NameOS)
+
+            private async Task getVMId(IDialogContext context, IAwaitable<string> Id)
+            {
+                var response = await Id;
+                VMUserId = response;
+                PromptDialog.Text(
+                context,
+                this.getVMPassword,
+                prompt: "Please provide a password for the new VM",
+                retry: "I didn't get that, Please try again."
+                );
+            }
+
+        // Method that allows the user to choose the OS platform for their VM
+
+        public virtual async Task getChooseOS(IDialogContext context, IAwaitable<ChoiceOS> NameOS)
             {
               var response = await NameOS;
               VirtualOSName = response.ToString();
-            /*PromptDialog.Choice(
+              PromptDialog.Choice(
               context : context,
               options : (IEnumerable<CloudServiceProvider>)Enum.GetValues(typeof(CloudServiceProvider)),
               resume : getCloudProvider,
               prompt : "Select a CLoud service provider to host you VM ",
               retry : "Oops, please select again",
               promptStyle : PromptStyle.Auto
-            );  */
-            PromptDialog.Text(
-                context,
-                this.getVMId,
-                prompt:"Please provide an ID for your VM",
-                retry:"I didn't understand that,Please try again" 
-                );
+            );  
             }
-                
-            private async Task getVMId(IDialogContext context, IAwaitable<string> Id)
-            {
-                var response = await Id;
-                VMUserId = response;
-                PromptDialog.Text(
-                    context,
-                    this.getVMPassword,
-                    prompt:"Please provide a password for the new VM",
-                    retry: "I didn't get that, Please try again."
-                    );
-            }
+               
 
             private async Task getVMPassword(IDialogContext context, IAwaitable<string> Password)
             {
                 var response = await Password;
                 VMPassword = response;
-                PromptDialog.Choice(
-                    context: context,
-                    options: (IEnumerable<CloudServiceProvider>)Enum.GetValues(typeof(CloudServiceProvider)),
-                    resume: getCloudProvider,
-                    prompt: "Select a CLoud service provider to host you VM ",
-                    retry: "Oops, please select again",
-                    promptStyle: PromptStyle.Auto
-                    );
+            PromptDialog.Choice(
+                context: context,
+                options: (IEnumerable<ChoiceOS>)Enum.GetValues(typeof(ChoiceOS)),
+                resume: getChooseOS,
+                prompt: "Which OS do you choose ? ",
+                retry: "Oops, some error occured.Please select again",
+                promptStyle: PromptStyle.Auto
+            );
+
+
         }
 
         // Method that gets the Cloud service provider response form user
