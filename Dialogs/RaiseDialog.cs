@@ -425,7 +425,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
                                 SqlCommand selectCommand = new SqlCommand(selectTicketId, conn);
 
-                                selectCommand.Parameters.Add("@UserName", sentence.Name);
+                                selectCommand.Parameters.AddWithValue("@UserName", sentence.Name);
 
                                 using (SqlDataReader queryReader = selectCommand.ExecuteReader())
                                 {
