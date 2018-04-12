@@ -61,7 +61,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
 
                 // Call to the SQL data reader
 
-               using(SqlDataReader dataReader = selectCommand.ExecuteReader())
+                using (SqlDataReader dataReader = selectCommand.ExecuteReader())
                 {
                     while (dataReader.Read())
                     {
@@ -76,15 +76,17 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                             Console.WriteLine("Perfect Match occured");
                             await context.PostAsync("A  ticket for this ID id sucessfully found");
                         }
-
-                        else
+                        /*else
                         {
                             await context.PostAsync("We have not found any details against the given ticket id. Please check the details.");
-                        }
-                    }
-
+                        }*/
+                    } 
+      
                     // close the data reader
                     dataReader.Close();
+
+                    await context.PostAsync("We have not found any details against the given ticket id. Please check the details.");
+
                 }
 
                 //close the sql connection to the database
@@ -96,11 +98,10 @@ namespace Microsoft.Bot.Sample.ProacticeBot
              * Catch any unhandle exception thrown by the try block
              **/
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
             context.Done(this);
         }
     }
