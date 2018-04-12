@@ -127,7 +127,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         }
        
         /**
-         * Intent to handle the Virtual Machine setup response
+         * Intent to handle the Virtual Machine configuration response
          **/
 
        [LuisIntent("Virtual Machine")]  
@@ -144,7 +144,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             else
             {
                 await context.PostAsync($"I would require some details to create a VM for you");
-                context.Call(new FormDialog(), ChildDialogComplete);
+                context.Call(new VMConfigDialog(), ChildDialogComplete);
             }
         }
 

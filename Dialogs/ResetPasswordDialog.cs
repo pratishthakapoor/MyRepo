@@ -5,6 +5,7 @@ using Microsoft.Bot.Builder.Dialogs;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
+    [Serializable]
     internal class ResetPasswordDialog : IDialog<object>
     {
         String CustomerId;
