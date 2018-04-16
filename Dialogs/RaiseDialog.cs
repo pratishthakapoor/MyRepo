@@ -575,6 +575,6 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         /**
          * Method tonhandle the interaction with the HP Service Manager - 9.0
          **/
-
+        
     }
 }
