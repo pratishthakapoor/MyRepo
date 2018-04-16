@@ -571,5 +571,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             return response?.documents[0]?.score ?? 0.0;
         }*/
+
+        /**
+         * Method tonhandle the interaction with the HP Service Manager - 9.0
+         **/
+
     }
 }
