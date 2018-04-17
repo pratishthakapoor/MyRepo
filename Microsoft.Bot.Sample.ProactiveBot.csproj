@@ -183,54 +183,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.deleteMultipleResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.deleteMultipleResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.deleteRecordResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.deleteRecordResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.getKeysResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.getKeysResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.getRecordsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.getRecordsResponseGetRecordsResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.getResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.getResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.insertResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.insertResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.updateResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\ServiceReference1\ProactiveBot.ServiceReference1.updateResponse1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
     <Content Include="images\images.png" />
@@ -238,11 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Database\EntityFrameworkActivityLogger.cs" />
@@ -301,7 +248,7 @@
     <Compile Include="SentimentAnalysis\TextAnalyticsService.cs" />
     <Compile Include="SentimentAnalysis\TextClient.cs" />
     <Compile Include="SentimentAnalysis\TextRequest.cs" />
-    <Compile Include="Web References\WebReference1\Reference.cs">
+    <Compile Include="Web References\WebReferenceSNOW\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -309,7 +256,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Connected Services\ServiceReference1\incident.wsdl" />
     <None Include="Properties\PublishProfiles\andreowebappproactivescratch4 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\andreowebappproactivescratch4 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\andreowebappproactivescratch8 - Web Deploy.pubxml" />
@@ -320,30 +266,30 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\WebReference1\deleteMultipleResponse.datasource">
+    <Content Include="Web References\WebReferenceSNOW\deleteMultipleResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\WebReference1\deleteRecordResponse.datasource">
+    <Content Include="Web References\WebReferenceSNOW\deleteRecordResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\WebReference1\getKeysResponse.datasource">
+    <Content Include="Web References\WebReferenceSNOW\getKeysResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\WebReference1\getRecordsResponseGetRecordsResult.datasource">
+    <Content Include="Web References\WebReferenceSNOW\getRecordsResponseGetRecordsResult.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\WebReference1\getResponse.datasource">
+    <Content Include="Web References\WebReferenceSNOW\getResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\WebReference1\incident.wsdl" />
-    <Content Include="Web References\WebReference1\insertResponse.datasource">
+    <None Include="Web References\WebReferenceSNOW\incident.wsdl" />
+    <Content Include="Web References\WebReferenceSNOW\insertResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\WebReference1\Reference.map">
+    <Content Include="Web References\WebReferenceSNOW\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
-    <Content Include="Web References\WebReference1\updateResponse.datasource">
+    <Content Include="Web References\WebReferenceSNOW\updateResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
@@ -370,18 +316,15 @@
   <ItemGroup>
     <WebReferenceUrl Include="https://dev56432.service-now.com/incident.do%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WebReference1\</RelPath>
+      <RelPath>Web References\WebReferenceSNOW\</RelPath>
       <UpdateFromURL>https://dev56432.service-now.com/incident.do%3fWSDL</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>ProactiveBot_WebReference1_ServiceNow_incident</CachedSettingsPropName>
+      <CachedSettingsPropName>ProactiveBot_WebReferenceSNOW_ServiceNow_incident</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
