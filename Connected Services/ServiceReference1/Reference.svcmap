@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="37a8777f-7f6c-4f8a-b458-de468d457d6d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="72da2292-c711-4f10-98ef-87147bae11f2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,7 +22,7 @@
     <MetadataSource Address="https://dev56432.service-now.com/incident.do?WSDL" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="incident.wsdl" MetadataType="Wsdl" ID="7f223ec4-e6ba-43c9-b08e-1c4177ef0638" SourceId="1" SourceUrl="https://dev56432.service-now.com/incident.do?WSDL" />
+    <MetadataFile FileName="incident.wsdl" MetadataType="Wsdl" ID="fcc629e3-c715-4741-b493-e3948d5062bc" SourceId="1" SourceUrl="https://dev56432.service-now.com/incident.do?WSDL" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

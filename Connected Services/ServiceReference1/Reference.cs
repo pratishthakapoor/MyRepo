@@ -8,68 +8,68 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProactiveBot.ServiceNowReference {
+namespace ProactiveBot.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.service-now.com/incident", ConfigurationName="ServiceNowReference.ServiceNowSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.service-now.com/incident", ConfigurationName="ServiceReference1.ServiceNowSoap")]
     public interface ServiceNowSoap {
         
         // CODEGEN: Generating message contract since the operation insert is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/insert", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.insertResponse1 insert(ProactiveBot.ServiceNowReference.insertRequest request);
+        ProactiveBot.ServiceReference1.insertResponse1 insert(ProactiveBot.ServiceReference1.insertRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/insert", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.insertResponse1> insertAsync(ProactiveBot.ServiceNowReference.insertRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.insertResponse1> insertAsync(ProactiveBot.ServiceReference1.insertRequest request);
         
         // CODEGEN: Generating message contract since the operation update is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/update", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.updateResponse1 update(ProactiveBot.ServiceNowReference.updateRequest request);
+        ProactiveBot.ServiceReference1.updateResponse1 update(ProactiveBot.ServiceReference1.updateRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/update", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.updateResponse1> updateAsync(ProactiveBot.ServiceNowReference.updateRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.updateResponse1> updateAsync(ProactiveBot.ServiceReference1.updateRequest request);
         
         // CODEGEN: Generating message contract since the operation deleteMultiple is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/deleteMultiple", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.deleteMultipleResponse1 deleteMultiple(ProactiveBot.ServiceNowReference.deleteMultipleRequest request);
+        ProactiveBot.ServiceReference1.deleteMultipleResponse1 deleteMultiple(ProactiveBot.ServiceReference1.deleteMultipleRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/deleteMultiple", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.deleteMultipleResponse1> deleteMultipleAsync(ProactiveBot.ServiceNowReference.deleteMultipleRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.deleteMultipleResponse1> deleteMultipleAsync(ProactiveBot.ServiceReference1.deleteMultipleRequest request);
         
         // CODEGEN: Generating message contract since the operation getKeys is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/getKeys", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.getKeysResponse1 getKeys(ProactiveBot.ServiceNowReference.getKeysRequest request);
+        ProactiveBot.ServiceReference1.getKeysResponse1 getKeys(ProactiveBot.ServiceReference1.getKeysRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/getKeys", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getKeysResponse1> getKeysAsync(ProactiveBot.ServiceNowReference.getKeysRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getKeysResponse1> getKeysAsync(ProactiveBot.ServiceReference1.getKeysRequest request);
         
         // CODEGEN: Generating message contract since the operation deleteRecord is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/deleteRecord", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.deleteRecordResponse1 deleteRecord(ProactiveBot.ServiceNowReference.deleteRecordRequest request);
+        ProactiveBot.ServiceReference1.deleteRecordResponse1 deleteRecord(ProactiveBot.ServiceReference1.deleteRecordRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/deleteRecord", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.deleteRecordResponse1> deleteRecordAsync(ProactiveBot.ServiceNowReference.deleteRecordRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.deleteRecordResponse1> deleteRecordAsync(ProactiveBot.ServiceReference1.deleteRecordRequest request);
         
         // CODEGEN: Generating message contract since the operation get is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/get", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.getResponse1 get(ProactiveBot.ServiceNowReference.getRequest request);
+        ProactiveBot.ServiceReference1.getResponse1 get(ProactiveBot.ServiceReference1.getRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/get", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getResponse1> getAsync(ProactiveBot.ServiceNowReference.getRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getResponse1> getAsync(ProactiveBot.ServiceReference1.getRequest request);
         
         // CODEGEN: Generating message contract since the operation getRecords is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/getRecords", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        ProactiveBot.ServiceNowReference.getRecordsResponse getRecords(ProactiveBot.ServiceNowReference.getRecordsRequest request);
+        ProactiveBot.ServiceReference1.getRecordsResponse getRecords(ProactiveBot.ServiceReference1.getRecordsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.service-now.com/incident/getRecords", ReplyAction="*")]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getRecordsResponse> getRecordsAsync(ProactiveBot.ServiceNowReference.getRecordsRequest request);
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getRecordsResponse> getRecordsAsync(ProactiveBot.ServiceReference1.getRecordsRequest request);
     }
     
     /// <remarks/>
@@ -1207,12 +1207,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class insertRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.insert insert;
+        public ProactiveBot.ServiceReference1.insert insert;
         
         public insertRequest() {
         }
         
-        public insertRequest(ProactiveBot.ServiceNowReference.insert insert) {
+        public insertRequest(ProactiveBot.ServiceReference1.insert insert) {
             this.insert = insert;
         }
     }
@@ -1224,12 +1224,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class insertResponse1 {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.insertResponse insertResponse;
+        public ProactiveBot.ServiceReference1.insertResponse insertResponse;
         
         public insertResponse1() {
         }
         
-        public insertResponse1(ProactiveBot.ServiceNowReference.insertResponse insertResponse) {
+        public insertResponse1(ProactiveBot.ServiceReference1.insertResponse insertResponse) {
             this.insertResponse = insertResponse;
         }
     }
@@ -2369,12 +2369,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class updateRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.update update;
+        public ProactiveBot.ServiceReference1.update update;
         
         public updateRequest() {
         }
         
-        public updateRequest(ProactiveBot.ServiceNowReference.update update) {
+        public updateRequest(ProactiveBot.ServiceReference1.update update) {
             this.update = update;
         }
     }
@@ -2386,12 +2386,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class updateResponse1 {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.updateResponse updateResponse;
+        public ProactiveBot.ServiceReference1.updateResponse updateResponse;
         
         public updateResponse1() {
         }
         
-        public updateResponse1(ProactiveBot.ServiceNowReference.updateResponse updateResponse) {
+        public updateResponse1(ProactiveBot.ServiceReference1.updateResponse updateResponse) {
             this.updateResponse = updateResponse;
         }
     }
@@ -3643,12 +3643,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class deleteMultipleRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.deleteMultiple deleteMultiple;
+        public ProactiveBot.ServiceReference1.deleteMultiple deleteMultiple;
         
         public deleteMultipleRequest() {
         }
         
-        public deleteMultipleRequest(ProactiveBot.ServiceNowReference.deleteMultiple deleteMultiple) {
+        public deleteMultipleRequest(ProactiveBot.ServiceReference1.deleteMultiple deleteMultiple) {
             this.deleteMultiple = deleteMultiple;
         }
     }
@@ -3660,12 +3660,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class deleteMultipleResponse1 {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.deleteMultipleResponse deleteMultipleResponse;
+        public ProactiveBot.ServiceReference1.deleteMultipleResponse deleteMultipleResponse;
         
         public deleteMultipleResponse1() {
         }
         
-        public deleteMultipleResponse1(ProactiveBot.ServiceNowReference.deleteMultipleResponse deleteMultipleResponse) {
+        public deleteMultipleResponse1(ProactiveBot.ServiceReference1.deleteMultipleResponse deleteMultipleResponse) {
             this.deleteMultipleResponse = deleteMultipleResponse;
         }
     }
@@ -4987,12 +4987,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class getKeysRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.getKeys getKeys;
+        public ProactiveBot.ServiceReference1.getKeys getKeys;
         
         public getKeysRequest() {
         }
         
-        public getKeysRequest(ProactiveBot.ServiceNowReference.getKeys getKeys) {
+        public getKeysRequest(ProactiveBot.ServiceReference1.getKeys getKeys) {
             this.getKeys = getKeys;
         }
     }
@@ -5004,12 +5004,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class getKeysResponse1 {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.getKeysResponse getKeysResponse;
+        public ProactiveBot.ServiceReference1.getKeysResponse getKeysResponse;
         
         public getKeysResponse1() {
         }
         
-        public getKeysResponse1(ProactiveBot.ServiceNowReference.getKeysResponse getKeysResponse) {
+        public getKeysResponse1(ProactiveBot.ServiceReference1.getKeysResponse getKeysResponse) {
             this.getKeysResponse = getKeysResponse;
         }
     }
@@ -5085,12 +5085,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class deleteRecordRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.deleteRecord deleteRecord;
+        public ProactiveBot.ServiceReference1.deleteRecord deleteRecord;
         
         public deleteRecordRequest() {
         }
         
-        public deleteRecordRequest(ProactiveBot.ServiceNowReference.deleteRecord deleteRecord) {
+        public deleteRecordRequest(ProactiveBot.ServiceReference1.deleteRecord deleteRecord) {
             this.deleteRecord = deleteRecord;
         }
     }
@@ -5102,12 +5102,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class deleteRecordResponse1 {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.deleteRecordResponse deleteRecordResponse;
+        public ProactiveBot.ServiceReference1.deleteRecordResponse deleteRecordResponse;
         
         public deleteRecordResponse1() {
         }
         
-        public deleteRecordResponse1(ProactiveBot.ServiceNowReference.deleteRecordResponse deleteRecordResponse) {
+        public deleteRecordResponse1(ProactiveBot.ServiceReference1.deleteRecordResponse deleteRecordResponse) {
             this.deleteRecordResponse = deleteRecordResponse;
         }
     }
@@ -6331,12 +6331,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class getRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.get get;
+        public ProactiveBot.ServiceReference1.get get;
         
         public getRequest() {
         }
         
-        public getRequest(ProactiveBot.ServiceNowReference.get get) {
+        public getRequest(ProactiveBot.ServiceReference1.get get) {
             this.get = get;
         }
     }
@@ -6348,12 +6348,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class getResponse1 {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.getResponse getResponse;
+        public ProactiveBot.ServiceReference1.getResponse getResponse;
         
         public getResponse1() {
         }
         
-        public getResponse1(ProactiveBot.ServiceNowReference.getResponse getResponse) {
+        public getResponse1(ProactiveBot.ServiceReference1.getResponse getResponse) {
             this.getResponse = getResponse;
         }
     }
@@ -8851,12 +8851,12 @@ namespace ProactiveBot.ServiceNowReference {
     public partial class getRecordsRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://www.service-now.com/incident", Order=0)]
-        public ProactiveBot.ServiceNowReference.getRecords getRecords;
+        public ProactiveBot.ServiceReference1.getRecords getRecords;
         
         public getRecordsRequest() {
         }
         
-        public getRecordsRequest(ProactiveBot.ServiceNowReference.getRecords getRecords) {
+        public getRecordsRequest(ProactiveBot.ServiceReference1.getRecords getRecords) {
             this.getRecords = getRecords;
         }
     }
@@ -8869,23 +8869,23 @@ namespace ProactiveBot.ServiceNowReference {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="getRecordsResponse", Namespace="http://www.service-now.com/incident", Order=0)]
         [System.Xml.Serialization.XmlArrayItemAttribute("getRecordsResult", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
-        public ProactiveBot.ServiceNowReference.getRecordsResponseGetRecordsResult[] getRecordsResponse1;
+        public ProactiveBot.ServiceReference1.getRecordsResponseGetRecordsResult[] getRecordsResponse1;
         
         public getRecordsResponse() {
         }
         
-        public getRecordsResponse(ProactiveBot.ServiceNowReference.getRecordsResponseGetRecordsResult[] getRecordsResponse1) {
+        public getRecordsResponse(ProactiveBot.ServiceReference1.getRecordsResponseGetRecordsResult[] getRecordsResponse1) {
             this.getRecordsResponse1 = getRecordsResponse1;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ServiceNowSoapChannel : ProactiveBot.ServiceNowReference.ServiceNowSoap, System.ServiceModel.IClientChannel {
+    public interface ServiceNowSoapChannel : ProactiveBot.ServiceReference1.ServiceNowSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceNowSoapClient : System.ServiceModel.ClientBase<ProactiveBot.ServiceNowReference.ServiceNowSoap>, ProactiveBot.ServiceNowReference.ServiceNowSoap {
+    public partial class ServiceNowSoapClient : System.ServiceModel.ClientBase<ProactiveBot.ServiceReference1.ServiceNowSoap>, ProactiveBot.ServiceReference1.ServiceNowSoap {
         
         public ServiceNowSoapClient() {
         }
@@ -8907,164 +8907,164 @@ namespace ProactiveBot.ServiceNowReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.insertResponse1 ProactiveBot.ServiceNowReference.ServiceNowSoap.insert(ProactiveBot.ServiceNowReference.insertRequest request) {
+        ProactiveBot.ServiceReference1.insertResponse1 ProactiveBot.ServiceReference1.ServiceNowSoap.insert(ProactiveBot.ServiceReference1.insertRequest request) {
             return base.Channel.insert(request);
         }
         
-        public ProactiveBot.ServiceNowReference.insertResponse insert(ProactiveBot.ServiceNowReference.insert insert1) {
-            ProactiveBot.ServiceNowReference.insertRequest inValue = new ProactiveBot.ServiceNowReference.insertRequest();
+        public ProactiveBot.ServiceReference1.insertResponse insert(ProactiveBot.ServiceReference1.insert insert1) {
+            ProactiveBot.ServiceReference1.insertRequest inValue = new ProactiveBot.ServiceReference1.insertRequest();
             inValue.insert = insert1;
-            ProactiveBot.ServiceNowReference.insertResponse1 retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).insert(inValue);
+            ProactiveBot.ServiceReference1.insertResponse1 retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).insert(inValue);
             return retVal.insertResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.insertResponse1> ProactiveBot.ServiceNowReference.ServiceNowSoap.insertAsync(ProactiveBot.ServiceNowReference.insertRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.insertResponse1> ProactiveBot.ServiceReference1.ServiceNowSoap.insertAsync(ProactiveBot.ServiceReference1.insertRequest request) {
             return base.Channel.insertAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.insertResponse1> insertAsync(ProactiveBot.ServiceNowReference.insert insert) {
-            ProactiveBot.ServiceNowReference.insertRequest inValue = new ProactiveBot.ServiceNowReference.insertRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.insertResponse1> insertAsync(ProactiveBot.ServiceReference1.insert insert) {
+            ProactiveBot.ServiceReference1.insertRequest inValue = new ProactiveBot.ServiceReference1.insertRequest();
             inValue.insert = insert;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).insertAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).insertAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.updateResponse1 ProactiveBot.ServiceNowReference.ServiceNowSoap.update(ProactiveBot.ServiceNowReference.updateRequest request) {
+        ProactiveBot.ServiceReference1.updateResponse1 ProactiveBot.ServiceReference1.ServiceNowSoap.update(ProactiveBot.ServiceReference1.updateRequest request) {
             return base.Channel.update(request);
         }
         
-        public ProactiveBot.ServiceNowReference.updateResponse update(ProactiveBot.ServiceNowReference.update update1) {
-            ProactiveBot.ServiceNowReference.updateRequest inValue = new ProactiveBot.ServiceNowReference.updateRequest();
+        public ProactiveBot.ServiceReference1.updateResponse update(ProactiveBot.ServiceReference1.update update1) {
+            ProactiveBot.ServiceReference1.updateRequest inValue = new ProactiveBot.ServiceReference1.updateRequest();
             inValue.update = update1;
-            ProactiveBot.ServiceNowReference.updateResponse1 retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).update(inValue);
+            ProactiveBot.ServiceReference1.updateResponse1 retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).update(inValue);
             return retVal.updateResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.updateResponse1> ProactiveBot.ServiceNowReference.ServiceNowSoap.updateAsync(ProactiveBot.ServiceNowReference.updateRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.updateResponse1> ProactiveBot.ServiceReference1.ServiceNowSoap.updateAsync(ProactiveBot.ServiceReference1.updateRequest request) {
             return base.Channel.updateAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.updateResponse1> updateAsync(ProactiveBot.ServiceNowReference.update update) {
-            ProactiveBot.ServiceNowReference.updateRequest inValue = new ProactiveBot.ServiceNowReference.updateRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.updateResponse1> updateAsync(ProactiveBot.ServiceReference1.update update) {
+            ProactiveBot.ServiceReference1.updateRequest inValue = new ProactiveBot.ServiceReference1.updateRequest();
             inValue.update = update;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).updateAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).updateAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.deleteMultipleResponse1 ProactiveBot.ServiceNowReference.ServiceNowSoap.deleteMultiple(ProactiveBot.ServiceNowReference.deleteMultipleRequest request) {
+        ProactiveBot.ServiceReference1.deleteMultipleResponse1 ProactiveBot.ServiceReference1.ServiceNowSoap.deleteMultiple(ProactiveBot.ServiceReference1.deleteMultipleRequest request) {
             return base.Channel.deleteMultiple(request);
         }
         
-        public ProactiveBot.ServiceNowReference.deleteMultipleResponse deleteMultiple(ProactiveBot.ServiceNowReference.deleteMultiple deleteMultiple1) {
-            ProactiveBot.ServiceNowReference.deleteMultipleRequest inValue = new ProactiveBot.ServiceNowReference.deleteMultipleRequest();
+        public ProactiveBot.ServiceReference1.deleteMultipleResponse deleteMultiple(ProactiveBot.ServiceReference1.deleteMultiple deleteMultiple1) {
+            ProactiveBot.ServiceReference1.deleteMultipleRequest inValue = new ProactiveBot.ServiceReference1.deleteMultipleRequest();
             inValue.deleteMultiple = deleteMultiple1;
-            ProactiveBot.ServiceNowReference.deleteMultipleResponse1 retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).deleteMultiple(inValue);
+            ProactiveBot.ServiceReference1.deleteMultipleResponse1 retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).deleteMultiple(inValue);
             return retVal.deleteMultipleResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.deleteMultipleResponse1> ProactiveBot.ServiceNowReference.ServiceNowSoap.deleteMultipleAsync(ProactiveBot.ServiceNowReference.deleteMultipleRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.deleteMultipleResponse1> ProactiveBot.ServiceReference1.ServiceNowSoap.deleteMultipleAsync(ProactiveBot.ServiceReference1.deleteMultipleRequest request) {
             return base.Channel.deleteMultipleAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.deleteMultipleResponse1> deleteMultipleAsync(ProactiveBot.ServiceNowReference.deleteMultiple deleteMultiple) {
-            ProactiveBot.ServiceNowReference.deleteMultipleRequest inValue = new ProactiveBot.ServiceNowReference.deleteMultipleRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.deleteMultipleResponse1> deleteMultipleAsync(ProactiveBot.ServiceReference1.deleteMultiple deleteMultiple) {
+            ProactiveBot.ServiceReference1.deleteMultipleRequest inValue = new ProactiveBot.ServiceReference1.deleteMultipleRequest();
             inValue.deleteMultiple = deleteMultiple;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).deleteMultipleAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).deleteMultipleAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.getKeysResponse1 ProactiveBot.ServiceNowReference.ServiceNowSoap.getKeys(ProactiveBot.ServiceNowReference.getKeysRequest request) {
+        ProactiveBot.ServiceReference1.getKeysResponse1 ProactiveBot.ServiceReference1.ServiceNowSoap.getKeys(ProactiveBot.ServiceReference1.getKeysRequest request) {
             return base.Channel.getKeys(request);
         }
         
-        public ProactiveBot.ServiceNowReference.getKeysResponse getKeys(ProactiveBot.ServiceNowReference.getKeys getKeys1) {
-            ProactiveBot.ServiceNowReference.getKeysRequest inValue = new ProactiveBot.ServiceNowReference.getKeysRequest();
+        public ProactiveBot.ServiceReference1.getKeysResponse getKeys(ProactiveBot.ServiceReference1.getKeys getKeys1) {
+            ProactiveBot.ServiceReference1.getKeysRequest inValue = new ProactiveBot.ServiceReference1.getKeysRequest();
             inValue.getKeys = getKeys1;
-            ProactiveBot.ServiceNowReference.getKeysResponse1 retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).getKeys(inValue);
+            ProactiveBot.ServiceReference1.getKeysResponse1 retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).getKeys(inValue);
             return retVal.getKeysResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getKeysResponse1> ProactiveBot.ServiceNowReference.ServiceNowSoap.getKeysAsync(ProactiveBot.ServiceNowReference.getKeysRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getKeysResponse1> ProactiveBot.ServiceReference1.ServiceNowSoap.getKeysAsync(ProactiveBot.ServiceReference1.getKeysRequest request) {
             return base.Channel.getKeysAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getKeysResponse1> getKeysAsync(ProactiveBot.ServiceNowReference.getKeys getKeys) {
-            ProactiveBot.ServiceNowReference.getKeysRequest inValue = new ProactiveBot.ServiceNowReference.getKeysRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getKeysResponse1> getKeysAsync(ProactiveBot.ServiceReference1.getKeys getKeys) {
+            ProactiveBot.ServiceReference1.getKeysRequest inValue = new ProactiveBot.ServiceReference1.getKeysRequest();
             inValue.getKeys = getKeys;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).getKeysAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).getKeysAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.deleteRecordResponse1 ProactiveBot.ServiceNowReference.ServiceNowSoap.deleteRecord(ProactiveBot.ServiceNowReference.deleteRecordRequest request) {
+        ProactiveBot.ServiceReference1.deleteRecordResponse1 ProactiveBot.ServiceReference1.ServiceNowSoap.deleteRecord(ProactiveBot.ServiceReference1.deleteRecordRequest request) {
             return base.Channel.deleteRecord(request);
         }
         
-        public ProactiveBot.ServiceNowReference.deleteRecordResponse deleteRecord(ProactiveBot.ServiceNowReference.deleteRecord deleteRecord1) {
-            ProactiveBot.ServiceNowReference.deleteRecordRequest inValue = new ProactiveBot.ServiceNowReference.deleteRecordRequest();
+        public ProactiveBot.ServiceReference1.deleteRecordResponse deleteRecord(ProactiveBot.ServiceReference1.deleteRecord deleteRecord1) {
+            ProactiveBot.ServiceReference1.deleteRecordRequest inValue = new ProactiveBot.ServiceReference1.deleteRecordRequest();
             inValue.deleteRecord = deleteRecord1;
-            ProactiveBot.ServiceNowReference.deleteRecordResponse1 retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).deleteRecord(inValue);
+            ProactiveBot.ServiceReference1.deleteRecordResponse1 retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).deleteRecord(inValue);
             return retVal.deleteRecordResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.deleteRecordResponse1> ProactiveBot.ServiceNowReference.ServiceNowSoap.deleteRecordAsync(ProactiveBot.ServiceNowReference.deleteRecordRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.deleteRecordResponse1> ProactiveBot.ServiceReference1.ServiceNowSoap.deleteRecordAsync(ProactiveBot.ServiceReference1.deleteRecordRequest request) {
             return base.Channel.deleteRecordAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.deleteRecordResponse1> deleteRecordAsync(ProactiveBot.ServiceNowReference.deleteRecord deleteRecord) {
-            ProactiveBot.ServiceNowReference.deleteRecordRequest inValue = new ProactiveBot.ServiceNowReference.deleteRecordRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.deleteRecordResponse1> deleteRecordAsync(ProactiveBot.ServiceReference1.deleteRecord deleteRecord) {
+            ProactiveBot.ServiceReference1.deleteRecordRequest inValue = new ProactiveBot.ServiceReference1.deleteRecordRequest();
             inValue.deleteRecord = deleteRecord;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).deleteRecordAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).deleteRecordAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.getResponse1 ProactiveBot.ServiceNowReference.ServiceNowSoap.get(ProactiveBot.ServiceNowReference.getRequest request) {
+        ProactiveBot.ServiceReference1.getResponse1 ProactiveBot.ServiceReference1.ServiceNowSoap.get(ProactiveBot.ServiceReference1.getRequest request) {
             return base.Channel.get(request);
         }
         
-        public ProactiveBot.ServiceNowReference.getResponse get(ProactiveBot.ServiceNowReference.get get1) {
-            ProactiveBot.ServiceNowReference.getRequest inValue = new ProactiveBot.ServiceNowReference.getRequest();
+        public ProactiveBot.ServiceReference1.getResponse get(ProactiveBot.ServiceReference1.get get1) {
+            ProactiveBot.ServiceReference1.getRequest inValue = new ProactiveBot.ServiceReference1.getRequest();
             inValue.get = get1;
-            ProactiveBot.ServiceNowReference.getResponse1 retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).get(inValue);
+            ProactiveBot.ServiceReference1.getResponse1 retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).get(inValue);
             return retVal.getResponse;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getResponse1> ProactiveBot.ServiceNowReference.ServiceNowSoap.getAsync(ProactiveBot.ServiceNowReference.getRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getResponse1> ProactiveBot.ServiceReference1.ServiceNowSoap.getAsync(ProactiveBot.ServiceReference1.getRequest request) {
             return base.Channel.getAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getResponse1> getAsync(ProactiveBot.ServiceNowReference.get get) {
-            ProactiveBot.ServiceNowReference.getRequest inValue = new ProactiveBot.ServiceNowReference.getRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getResponse1> getAsync(ProactiveBot.ServiceReference1.get get) {
+            ProactiveBot.ServiceReference1.getRequest inValue = new ProactiveBot.ServiceReference1.getRequest();
             inValue.get = get;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).getAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).getAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ProactiveBot.ServiceNowReference.getRecordsResponse ProactiveBot.ServiceNowReference.ServiceNowSoap.getRecords(ProactiveBot.ServiceNowReference.getRecordsRequest request) {
+        ProactiveBot.ServiceReference1.getRecordsResponse ProactiveBot.ServiceReference1.ServiceNowSoap.getRecords(ProactiveBot.ServiceReference1.getRecordsRequest request) {
             return base.Channel.getRecords(request);
         }
         
-        public ProactiveBot.ServiceNowReference.getRecordsResponseGetRecordsResult[] getRecords(ProactiveBot.ServiceNowReference.getRecords getRecords1) {
-            ProactiveBot.ServiceNowReference.getRecordsRequest inValue = new ProactiveBot.ServiceNowReference.getRecordsRequest();
+        public ProactiveBot.ServiceReference1.getRecordsResponseGetRecordsResult[] getRecords(ProactiveBot.ServiceReference1.getRecords getRecords1) {
+            ProactiveBot.ServiceReference1.getRecordsRequest inValue = new ProactiveBot.ServiceReference1.getRecordsRequest();
             inValue.getRecords = getRecords1;
-            ProactiveBot.ServiceNowReference.getRecordsResponse retVal = ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).getRecords(inValue);
+            ProactiveBot.ServiceReference1.getRecordsResponse retVal = ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).getRecords(inValue);
             return retVal.getRecordsResponse1;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getRecordsResponse> ProactiveBot.ServiceNowReference.ServiceNowSoap.getRecordsAsync(ProactiveBot.ServiceNowReference.getRecordsRequest request) {
+        System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getRecordsResponse> ProactiveBot.ServiceReference1.ServiceNowSoap.getRecordsAsync(ProactiveBot.ServiceReference1.getRecordsRequest request) {
             return base.Channel.getRecordsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ProactiveBot.ServiceNowReference.getRecordsResponse> getRecordsAsync(ProactiveBot.ServiceNowReference.getRecords getRecords) {
-            ProactiveBot.ServiceNowReference.getRecordsRequest inValue = new ProactiveBot.ServiceNowReference.getRecordsRequest();
+        public System.Threading.Tasks.Task<ProactiveBot.ServiceReference1.getRecordsResponse> getRecordsAsync(ProactiveBot.ServiceReference1.getRecords getRecords) {
+            ProactiveBot.ServiceReference1.getRecordsRequest inValue = new ProactiveBot.ServiceReference1.getRecordsRequest();
             inValue.getRecords = getRecords;
-            return ((ProactiveBot.ServiceNowReference.ServiceNowSoap)(this)).getRecordsAsync(inValue);
+            return ((ProactiveBot.ServiceReference1.ServiceNowSoap)(this)).getRecordsAsync(inValue);
         }
     }
 }

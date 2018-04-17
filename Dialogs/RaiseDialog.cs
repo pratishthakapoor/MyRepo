@@ -23,6 +23,7 @@ using System.Linq;
 using ProactiveBot.Dialogs;
 using Microsoft.Bot.Sample.ProacticeBot;
 using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace Microsoft.Bot.Sample.ProactiveBot 
 {
@@ -458,6 +459,14 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                              **/
                             Console.WriteLine("Not connected");
                         }
+
+                        /**
+                         * bot to snow connection code 
+                         **/
+
+                        // Service Reference specific code
+                        
+
                     }
                     catch(Exception e)
                     {

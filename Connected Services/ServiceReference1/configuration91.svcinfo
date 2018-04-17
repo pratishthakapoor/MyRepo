@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="glrD2QU8LP1tV7mYmJVcqkhDy48=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="FmxQLYmG8AT9K9dOjzuiXIMvwNk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ServiceNowSoap">
       <properties>
@@ -221,7 +221,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ServiceNowSoap" contract="ServiceNowReference.ServiceNowSoap" bindingType="basicHttpBinding" address="https://dev56432.service-now.com/incident.do?SOAP" bindingConfiguration="ServiceNowSoap">
+    <endpoint name="ServiceNowSoap" contract="ServiceReference1.ServiceNowSoap" bindingType="basicHttpBinding" address="https://dev56432.service-now.com/incident.do?SOAP" bindingConfiguration="ServiceNowSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>https://dev56432.service-now.com/incident.do?SOAP</serializedValue>
@@ -236,7 +236,7 @@
           <serializedValue>ServiceNowSoap</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceNowReference.ServiceNowSoap</serializedValue>
+          <serializedValue>ServiceReference1.ServiceNowSoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
