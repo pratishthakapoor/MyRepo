@@ -8,6 +8,11 @@ using System.Text;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
+
+    /**
+     * Snow Logger class which is used to connect to the SNOW service using Table API.
+     **/
+
     public class SnowLogger
     {
         public static string CreateIncidentServiceNow(string shortDescription, string contact, string Description, string category_name)
@@ -45,6 +50,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
                 }
 
+                /**
+                 * HttpWebResponse captures the details send by the REST Table API
+                 **/
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                 {
                     var res = new StreamReader(response.GetResponseStream()).ReadToEnd();
