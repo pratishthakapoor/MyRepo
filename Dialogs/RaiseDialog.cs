@@ -434,7 +434,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                     while (queryReader.Read())
                                     {
                                         String retrieveId = queryReader.GetInt32(0).ToString();
-                                        await context.PostAsync("Your ticket has been raised successfully, " + retrieveId + " your token id for the raised ticket");
+                                        //await context.PostAsync("Your ticket has been raised successfully, " + retrieveId + " your token id for the raised ticket");
                                     }
                                     
                                 }
@@ -461,12 +461,14 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                         }
 
                         /**
-                         * bot to snow connection code 
+                         * Snow connection code
                          **/
-
-                        // Service Reference specific code
-                        
-
+                        string DetailDescription = sentence.Desc + sentence.ServerName + sentence.MiddlewareName + sentence.DatabaseName;
+                        String incidentNo = string.Empty;
+                        incidentNo = SnowLogger.CreateIncidentServiceNow(sentence.Desc, sentence.Contact, DetailDescription, sentence.CategoryName);
+                        Console.WriteLine(incidentNo);
+                        await context.PostAsync("Your ticket has been raised successfully, " + incidentNo + " your token id for the raised ticket");
+                        await context.PostAsync("Please keep the note of above token number. as it would be used for future references");
                     }
                     catch(Exception e)
                     {

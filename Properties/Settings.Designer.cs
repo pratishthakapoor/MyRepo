@@ -22,15 +22,5 @@ namespace ProactiveBot.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dev56432.service-now.com/incident.do?SOAP")]
-        public string ProactiveBot_WebReferenceSNOW_ServiceNow_incident {
-            get {
-                return ((string)(this["ProactiveBot_WebReferenceSNOW_ServiceNow_incident"]));
-            }
-        }
     }
 }

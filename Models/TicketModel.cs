@@ -39,6 +39,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         [Prompt(new string[] { "Which database are used by you ? "})]
         public string DatabaseName { get; set; }
 
+        [Prompt(new string[] { "Please select a category (Inquiry/Help, Software, Hadware, Network, Database)"})]
+        public string CategoryName { get; set; }
+
         public static IForm<TicketModel> BuildForm()
         {
             //Form flow builder being called
@@ -49,6 +52,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(ServerName)/*validate: ValidateServerInfo*/)
                 .Field(nameof(MiddlewareName), validate: ValidateMiddlewareInfo)
                 .Field(nameof(DatabaseName), validate: ValidateDatabaseInfo)
+                .Field(nameof(CategoryName))
                 //.Field(nameof(Priority))
                 .Field(nameof(Contact), validate: ValidateContactInformation)
                 .Field(nameof(PhoneContact))

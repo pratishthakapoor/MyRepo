@@ -197,6 +197,7 @@
     <Compile Include="Dialogs\RaiseIssueDialog.cs" />
     <Compile Include="Dialogs\RaiseTicketDialog.cs" />
     <Compile Include="Dialogs\ResetPasswordDialog.cs" />
+    <Compile Include="SNOWLogger\SnowLogger.cs" />
     <Compile Include="Dialogs\StorageAdditionDialog.cs" />
     <Compile Include="Dialogs\VMConfigDialog.cs" />
     <Compile Include="Internals\Responses.cs" />
@@ -248,11 +249,6 @@
     <Compile Include="SentimentAnalysis\TextAnalyticsService.cs" />
     <Compile Include="SentimentAnalysis\TextClient.cs" />
     <Compile Include="SentimentAnalysis\TextRequest.cs" />
-    <Compile Include="Web References\WebReferenceSNOW\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -266,32 +262,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\WebReferenceSNOW\deleteMultipleResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\WebReferenceSNOW\deleteRecordResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\WebReferenceSNOW\getKeysResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\WebReferenceSNOW\getRecordsResponseGetRecordsResult.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\WebReferenceSNOW\getResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <None Include="Web References\WebReferenceSNOW\incident.wsdl" />
-    <Content Include="Web References\WebReferenceSNOW\insertResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\WebReferenceSNOW\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web References\WebReferenceSNOW\updateResponse.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -309,22 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="https://dev56432.service-now.com/incident.do%3fWSDL">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WebReferenceSNOW\</RelPath>
-      <UpdateFromURL>https://dev56432.service-now.com/incident.do%3fWSDL</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>ProactiveBot_WebReferenceSNOW_ServiceNow_incident</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
