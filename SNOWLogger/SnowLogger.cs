@@ -85,15 +85,18 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 RetrieveRequest.Headers.Add("Authorization", auth);
                 RetrieveRequest.Method = "GET";
 
-                using (HttpWebResponse SNOWresponse = RetrieveRequest.GetResponse() as HttpWebResponse)
+                using (HttpWebResponse SnowResponse = RetrieveRequest.GetResponse() as HttpWebResponse)
                 {
-                    var result = new StreamReader(SNOWresponse.GetResponseStream()).ReadToEnd();
+                    var result = new StreamReader(SnowResponse.GetResponseStream()).ReadToEnd();
 
                     JObject jResponse = JObject.Parse(result.ToString());
-                    var obObject = (JArray)jResponse["result"];
+                    /*var obObject = (JArray)jResponse["result"];
                     //string incidentStatus = ((JValue)obObject.SelectToken("state")).Value.ToString();
-                    string test = obObject.Values("state").ToString();
+                    //string test = obObject.Values("state").ToString();
                     string incidentStatus = obObject.SelectToken("state").ToString();
+                    return incidentStatus;*/
+                    JArray jObject = (JArray)jResponse["result"];
+                    //string incidentStatus = ((JEnumerable<JToken>)jObject.SelectToken("state")).ToString();
                     return incidentStatus;
                 }
 
