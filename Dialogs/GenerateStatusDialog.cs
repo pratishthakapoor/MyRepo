@@ -92,6 +92,13 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 //close the sql connection to the database
 
                 sqlConnection.Close();
+
+                /**
+                 * Method call to handle the user request to check ticket status from the SNOW service
+                 * Read data from the SNOW incidence
+                 **/
+                
+
             }
 
             /**
