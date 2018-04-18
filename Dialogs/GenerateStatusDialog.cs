@@ -13,6 +13,7 @@ using System.IO;
 using System.Web;  
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Microsoft.Bot.Sample.ProactiveBot;
 
 namespace Microsoft.Bot.Sample.ProacticeBot
 {
@@ -39,29 +40,29 @@ namespace Microsoft.Bot.Sample.ProacticeBot
              * Connect to the database to retrieve the ticket details 
              **/
 
-            string establishConnection = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
+            //string establishConnection = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
 
-            SqlConnection sqlConnection = new SqlConnection(establishConnection);
+            //SqlConnection sqlConnection = new SqlConnection(establishConnection);
 
             /**
              * Open the connection to the SQL database 
              **/
-            sqlConnection.Open();
+            //sqlConnection.Open();
 
             try
             {
                 /**
              * SQL Select query to retireve the ticket status and details
              **/
-                var SelectQuery = @"SELECT Id from dbo.BotDetails WHERE Id = @Id";
+                //var SelectQuery = @"SELECT Id from dbo.BotDetails WHERE Id = @Id";
 
-                SqlCommand selectCommand = new SqlCommand(SelectQuery, sqlConnection);
+                //SqlCommand selectCommand = new SqlCommand(SelectQuery, sqlConnection);
 
-                selectCommand.Parameters.AddWithValue("@Id", response);
+                //selectCommand.Parameters.AddWithValue("@Id", response);
 
                 // Call to the SQL data reader
 
-                using (SqlDataReader dataReader = selectCommand.ExecuteReader())
+                /*using (SqlDataReader dataReader = selectCommand.ExecuteReader())
                 {
                     while (dataReader.Read())
                     {
@@ -71,34 +72,32 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                          * the if condition checks the wether the Ticket Id enetered by the user matches the id stored in the DB
                          **/
 
-                        if (retrieveId == response)
+                        /*if (retrieveId == response)
                         {
                             Console.WriteLine("Perfect Match occured");
                             await context.PostAsync("A  ticket for this ID id sucessfully found");
                         }
-                        /*else
-                        {
-                            await context.PostAsync("We have not found any details against the given ticket id. Please check the details.");
-                        }*/
                     } 
       
                     // close the data reader
-                    dataReader.Close();
+                    //dataReader.Close();
 
                     await context.PostAsync("We have not found any details against the given ticket id. Please check the details.");
 
-                }
+                }*/
 
                 //close the sql connection to the database
 
-                sqlConnection.Close();
+                //sqlConnection.Close();
 
                 /**
                  * Method call to handle the user request to check ticket status from the SNOW service
                  * Read data from the SNOW incidence
                  **/
-                
 
+
+                string statusDetails = SnowLogger.RetrieveIncidentServiceNow(response);
+                Console.WriteLine(statusDetails);
             }
 
             /**

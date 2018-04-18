@@ -70,5 +70,39 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             
         }
+
+        public static string RetrieveIncidentServiceNow(string Ticketresponse)
+        {
+            try
+            {
+                string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
+                string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
+                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + "?" + "sysparm_query=number=" + Ticketresponse;
+
+                var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+
+                HttpWebRequest RetrieveRequest = WebRequest.Create(URL) as HttpWebRequest;
+                RetrieveRequest.Headers.Add("Authorization", auth);
+                RetrieveRequest.Method = "GET";
+
+                using (HttpWebResponse SNOWresponse = RetrieveRequest.GetResponse() as HttpWebResponse)
+                {
+                    var result = new StreamReader(SNOWresponse.GetResponseStream()).ReadToEnd();
+
+                    JObject jResponse = JObject.Parse(result.ToString());
+                    var obObject = (JArray)jResponse["result"];
+                    //string incidentStatus = ((JValue)obObject.SelectToken("state")).Value.ToString();
+                    string test = obObject.Values("state").ToString();
+                    string incidentStatus = obObject.SelectToken("state").ToString();
+                    return incidentStatus;
+                }
+
+            }
+            catch(Exception message)
+            {
+                Console.WriteLine(message.Message);
+                return message.Message;
+            }
+        }
     }
 }
