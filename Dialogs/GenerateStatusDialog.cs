@@ -95,8 +95,16 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                  * Read data from the SNOW incidence
                  **/
 
+                /**
+                 * statusDetails parameter stores the value return by RetrieveIncidentServiceNow method of the Snow Logger class
+                 **/
 
                 string statusDetails = SnowLogger.RetrieveIncidentServiceNow(response);
+
+                /**
+                 * The if- else- if condition to match the state of the incident token returned by the RetrieveIncidentSerivceNow method
+                 */
+
                 if (statusDetails == "1")
                     await context.PostAsync("Your token is created and is under review by our team.");
                 else if (statusDetails == "2")
@@ -106,6 +114,11 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 else if (statusDetails == "6")
                 {
                     await context.PostAsync("Your ticket is resolved.");
+
+                    /**
+                     * Retrieves the details from the resolve columns of SnowLogger class if the incident token is being resolved
+                     **/
+
                     string resolveDetails = SnowLogger.RetrieveIncidentResolveDetails(response);
                     await context.PostAsync("Solution fetched by our team for your problem: " + resolveDetails);
                 }
@@ -114,6 +127,11 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 else if (statusDetails == "7")
                 {
                     await context.PostAsync("Your ticket has been closed by our team");
+
+                    /**
+                     * Retrieves the close_code from the SnowLogger class if the incident token is being closed
+                     **/
+
                     string resolveDetails = SnowLogger.RetrieveIncidentCloseDetails(response);
                     await context.PostAsync("Reasons for closing the ticket: " + resolveDetails);
                 }
