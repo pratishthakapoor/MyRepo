@@ -15,7 +15,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         public IDictionary<string, string> VMOptions = new Dictionary<string, string>
         {
             {"1", "New VM creation" },
-            {"2", "Adding storage to an existing VM " }
+            //{"2", "Adding storage to an existing VM " }
         };
 
         /**
