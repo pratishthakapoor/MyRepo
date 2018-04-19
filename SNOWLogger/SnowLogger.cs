@@ -96,7 +96,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     string incidentStatus = obObject.SelectToken("state").ToString();
                     return incidentStatus;*/
                     JArray jObject = (JArray)jResponse["result"];
-                    //string incidentStatus = ((JEnumerable<JToken>)jObject.SelectToken("state")).ToString();
+                    string incidentStatus = jObject.SelectToken("state").ToString();
                     return incidentStatus;
                 }
 
