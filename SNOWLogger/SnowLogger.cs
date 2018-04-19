@@ -90,22 +90,25 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     var result = new StreamReader(SnowResponse.GetResponseStream()).ReadToEnd();
 
                     JObject jResponse = JObject.Parse(result.ToString());
-                    /*var obObject = (JArray)jResponse["result"];
-                    //string incidentStatus = ((JValue)obObject.SelectToken("state")).Value.ToString();
-                    //string test = obObject.Values("state").ToString();
-                    string incidentStatus = obObject.SelectToken("state").ToString();
-                    return incidentStatus;*/
-                    JArray jObject = (JArray)jResponse["result"];
-                    string incidentStatus = jObject.SelectToken("state").ToString();
-                    return incidentStatus;
-                }
+                    JToken obObject = jResponse["result"];
+                    JEnumerable<JToken> incidentStatus = (JEnumerable<JToken>)obObject.Values("state");
+                    foreach(var item in incidentStatus)
+                    {
+                        if (item != null)
+                            return ((JValue)item).Value.ToString();
+                    }
 
+                    /*JArray jObject = (JArray)jResponse["result"];
+                    string incidentStatus = jObject.SelectToken("state").ToString();
+                    return incidentStatus;*/
+                }                
             }
             catch(Exception message)
             {
                 Console.WriteLine(message.Message);
                 return message.Message;
             }
+            return string.Empty;
         }
     }
 }
