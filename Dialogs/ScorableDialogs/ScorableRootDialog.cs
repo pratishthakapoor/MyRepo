@@ -41,7 +41,7 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
         {
             var message = item as IMessageActivity;
             var dialog = new RaiseDialog();
-            var interruption = dialog.Void(stack);
+            var interruption = dialog.Vo id(stack);
             stack.Call(interruption, null);
             return Task.CompletedTask;
         }
