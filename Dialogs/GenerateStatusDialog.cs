@@ -110,7 +110,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 else
                     await context.PostAsync("Your team cancelled your ticket");
 
-                Console.WriteLine(statusDetails);
+               // Console.WriteLine(statusDetails);
             }
 
             /**
