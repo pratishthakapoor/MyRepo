@@ -311,6 +311,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var confirmation = await result;
             await context.PostAsync(confirmation ? "Help required" : "Bye, hope to see you soon");
+            /*var response = await result;
+            Activity myActivity = (Activity)context.Activity;
+            myActivity.Text = response.ToString();
+            await MessageReceived(context, Awaitable.FromItem(myActivity));*/
 
         }
 
