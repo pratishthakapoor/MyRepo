@@ -98,11 +98,11 @@ namespace Microsoft.Bot.Sample.ProacticeBot
 
                 string statusDetails = SnowLogger.RetrieveIncidentServiceNow(response);
                 if (statusDetails == "1")
-                    await context.PostAsync("Your token is created and is under review");
+                    await context.PostAsync("Your token is created and is under review by our team.");
                 else if (statusDetails == "2")
-                    await context.PostAsync("Your ticket is in progress");
+                    await context.PostAsync("Your ticket is in progress.");
                 else if (statusDetails == "3")
-                    await context.PostAsync("Your ticket is been kept on hold");
+                    await context.PostAsync("Your ticket is been kept on hold.");
                 else if (statusDetails == "6")
                 {
                     await context.PostAsync("Your ticket is resolved.");
