@@ -103,12 +103,23 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                     await context.PostAsync("Your ticket is in progress");
                 else if (statusDetails == "3")
                     await context.PostAsync("Your ticket is been kept on hold");
-                else if (statusDetails == "4")
-                    await context.PostAsync("Your ticket is resolved.Please login into your account for more details.");
-                else if (statusDetails == "5")
+                else if (statusDetails == "6")
+                {
+                    await context.PostAsync("Your ticket is resolved.");
+                    string resolveDetails = SnowLogger.RetrieveIncidentResolveDetails(response);
+                    await context.PostAsync("Solution fetched by our team for your problem: " + resolveDetails);
+                }
+                   
+                    
+                else if (statusDetails == "7")
+                {
                     await context.PostAsync("Your ticket has been closed by our team");
+                    string resolveDetails = SnowLogger.RetrieveIncidentCloseDetails(response);
+                    await context.PostAsync("Reasons for closing the ticket: " + resolveDetails);
+                }
+                    
                 else
-                    await context.PostAsync("Your team cancelled your ticket");
+                    await context.PostAsync("Our team cancelled your ticket");
 
                // Console.WriteLine(statusDetails);
             }
