@@ -467,7 +467,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                         /**
                          * Snow connection code
                          **/
-                        string DetailDescription = sentence.Desc + "running on server" + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + "service";
+                        string DetailDescription = sentence.Desc + "running on server " + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + "service";
                         String incidentNo = string.Empty;
                         incidentNo = SnowLogger.CreateIncidentServiceNow(sentence.Desc, sentence.Contact, DetailDescription, sentence.CategoryName);
                         Console.WriteLine(incidentNo);
