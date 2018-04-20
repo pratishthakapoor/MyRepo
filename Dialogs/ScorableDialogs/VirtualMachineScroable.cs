@@ -18,7 +18,7 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
         private readonly IDialogTask task;
        
 
-        public VirtualMachineScroable(IDialogTask dialogTask)
+        public VirtualMachineScroable(IDialogTask task)
         {
             SetField.NotNull(out this.task, nameof(task), task);
         }
