@@ -67,6 +67,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
                 var connectorClient = new ConnectorClient(new System.Uri(activity.ServiceUrl));
                 Activity isTyping = activity.CreateReply("Bot is typing...");
+                Thread.Sleep(2500);
                 isTyping.Type = ActivityTypes.Typing;
                 await connectorClient.Conversations.ReplyToActivityAsync(isTyping);
 
