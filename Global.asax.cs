@@ -40,6 +40,7 @@ namespace SimpleEchoBot
 
                 });
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
             this.RegisterBotModules();
 
             // Enables creating Data.Activity object for the IMessageActivity object within EntityFrameworkActivityLogger
@@ -61,12 +62,12 @@ namespace SimpleEchoBot
 
         private void RegisterBotModules()
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(new ReflectionSurrogateModule());
-
-            builder.RegisterModule<IscorableRegisterModule>();
-
-            builder.Update(Conversation.Container);
+            Conversation.UpdateContainer(
+                builder =>
+                {
+                    builder.RegisterModule(new ReflectionSurrogateModule());
+                    builder.RegisterModule<IscorableRegisterModule>();
+                }); 
         }
     }
 }
