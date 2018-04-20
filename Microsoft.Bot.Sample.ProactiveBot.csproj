@@ -199,6 +199,7 @@
     <Compile Include="Dialogs\ResetPasswordDialog.cs" />
     <Compile Include="Dialogs\ScorableDialogs\CancelScorable.cs" />
     <Compile Include="Dialogs\ScorableDialogs\ScorableRootDialog.cs" />
+    <Compile Include="Modules\IscorableRegisterModule.cs" />
     <Compile Include="SNOWLogger\SnowLogger.cs" />
     <Compile Include="Dialogs\StorageAdditionDialog.cs" />
     <Compile Include="Dialogs\VMConfigDialog.cs" />
@@ -282,9 +283,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

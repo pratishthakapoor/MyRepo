@@ -7,6 +7,9 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
 using ProactiveBot.Database;
+using System;
+using Microsoft.Bot.Builder.Internals.Fibers;
+using ProactiveBot.Modules;
 
 namespace SimpleEchoBot
 {
@@ -37,6 +40,7 @@ namespace SimpleEchoBot
 
                 });
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            this.RegisterBotModules();
 
             // Enables creating Data.Activity object for the IMessageActivity object within EntityFrameworkActivityLogger
 
@@ -53,6 +57,16 @@ namespace SimpleEchoBot
             var new_builder = new ContainerBuilder();
             new_builder.RegisterType<EntityFrameworkActivityLogger>().AsImplementedInterfaces().InstancePerDependency();
             new_builder.Update(Conversation.Container);*/
+        }
+
+        private void RegisterBotModules()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new ReflectionSurrogateModule());
+
+            builder.RegisterModule<IscorableRegisterModule>();
+
+            builder.Update(Conversation.Container);
         }
     }
 }
