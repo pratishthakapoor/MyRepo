@@ -199,6 +199,7 @@
     <Compile Include="Dialogs\ResetPasswordDialog.cs" />
     <Compile Include="Dialogs\ScorableDialogs\CancelScorable.cs" />
     <Compile Include="Dialogs\ScorableDialogs\ScorableRootDialog.cs" />
+    <Compile Include="Dialogs\ScorableDialogs\VirtualMachineScroable.cs" />
     <Compile Include="Modules\IscorableRegisterModule.cs" />
     <Compile Include="SNOWLogger\SnowLogger.cs" />
     <Compile Include="Dialogs\StorageAdditionDialog.cs" />

@@ -17,10 +17,24 @@ namespace ProactiveBot.Modules
         {
             base.Load(builder);
 
+            /**
+             * registering builder for CancelScrolable
+             **/
+            
             builder
                 .Register(c => new CancelScorable(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();
+
+            /**
+             * Registering builder for VMConfigScroable
+             **/
+
+            builder
+                .Register(c => new VirtualMachineScroable(c.Resolve<IDialogTask>()))
+                .As<IScorable<IActivity, double>>()
+                .InstancePerLifetimeScope();
+
         }
     }
 }
