@@ -59,8 +59,8 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
             var message = item as IMessageActivity;
             if(message != null && !string.IsNullOrWhiteSpace(message.Text))
             {
-                if(message.Text.Equals("Virtual Machine Configuration", StringComparison.InvariantCultureIgnoreCase) && 
-                    message.Text.Equals("Tell me about Virtual Machine setup", StringComparison.InvariantCultureIgnoreCase) && 
+                if(message.Text.Equals("Virtual Machine Configuration", StringComparison.InvariantCultureIgnoreCase) ||
+                    message.Text.Equals("Tell me about Virtual Machine setup", StringComparison.InvariantCultureIgnoreCase) ||
                     message.Text.Equals("Tell me about VM config", StringComparison.InvariantCultureIgnoreCase))
                 {
                     return message.Text;
