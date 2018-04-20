@@ -120,7 +120,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                      **/
 
                     string resolveDetails = SnowLogger.RetrieveIncidentResolveDetails(response);
-                    await context.PostAsync("Solution fetched by our team for your problem: " + resolveDetails);
+                    await context.PostAsync("For the ticket id " + response+ " solution fetched by our team is : " + resolveDetails);
                 }
                    
                     
