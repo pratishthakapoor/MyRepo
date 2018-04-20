@@ -13,6 +13,7 @@ using System.Data.Entity.Infrastructure;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Autofac;
 using AdaptiveCards;
+using System.Threading;
 
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
@@ -63,7 +64,16 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 }*/
 
                 //Call the root dialog 
+
+                var connectorClient = new ConnectorClient(new System.Uri(activity.ServiceUrl));
+                Activity isTyping = activity.CreateReply();
+                isTyping.Type = ActivityTypes.Typing;
+                await connectorClient.Conversations.ReplyToActivityAsync(isTyping);
+
                 await Conversation.SendAsync(activity, () => new RaiseDialog());
+
+
+
             }
             else if (activity.Type == ActivityTypes.Event)
             {
@@ -183,9 +193,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             }
             else if (message.Type == ActivityTypes.Typing)
             {
-                // Handle knowing tha the user is typing
+                // Handle knowing that the user is typing
 
-            
             }
             else if (message.Type == ActivityTypes.Ping)
             {

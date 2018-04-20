@@ -55,7 +55,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(CategoryName))
                 //.Field(nameof(Priority))
                 .Field(nameof(Contact), validate: ValidateContactInformation)
-                .Field(nameof(PhoneContact))
+                .Field(nameof(PhoneContact), validate: ValidatePhoneContact)
                 .AddRemainingFields()
                 .Message("According to the responses entered by you I have generated a statement for you that showscase you problem : " +
                  "{Desc} running on server {ServerName}, using {DatabaseName} database and the {MiddlewareName} services used by you.")
