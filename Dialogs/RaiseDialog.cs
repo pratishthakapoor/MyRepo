@@ -326,8 +326,8 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var sentence = await result;
             // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            //string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
-            string sentenceString = sentence.Desc;
+            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            //string sentenceString = sentence.Desc;
 
             /**
              * To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
