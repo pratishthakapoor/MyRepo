@@ -66,7 +66,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 //Call the root dialog 
 
                 var connectorClient = new ConnectorClient(new System.Uri(activity.ServiceUrl));
-                Activity isTyping = activity.CreateReply();
+                Activity isTyping = activity.CreateReply("Bot is typing...");
                 isTyping.Type = ActivityTypes.Typing;
                 await connectorClient.Conversations.ReplyToActivityAsync(isTyping);
 
