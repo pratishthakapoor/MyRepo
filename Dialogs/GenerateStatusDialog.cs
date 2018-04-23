@@ -108,9 +108,24 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 if (statusDetails == "1")
                     await context.PostAsync("Your token is created and is under review by our team.");
                 else if (statusDetails == "2")
-                    await context.PostAsync("Your ticket is in progress.");
+                {
+                    var status = "Your ticket is in progress.";
+                    string Notesresult = SnowLogger.RetrieveIncidentWorkNotes(response);
+
+                    var replyMessage = context.MakeMessage();
+                    Attachment attachment = GetReplyMessage(Notesresult, response, status);
+                    replyMessage.Attachments = new List<Attachment> { attachment };
+                    await context.PostAsync(replyMessage);
+
+                }
+                    
                 else if (statusDetails == "3")
+                {
                     await context.PostAsync("Your ticket is been kept on hold.");
+
+                    
+                }
+                    
                 else if (statusDetails == "6")
                 {
                     await context.PostAsync("Your ticket is resolved.");
@@ -152,5 +167,24 @@ namespace Microsoft.Bot.Sample.ProacticeBot
             }
             context.Done(this);
         }
+
+        private Attachment GetReplyMessage(string notesresult, string response, string status)
+        {
+            var heroCard = new HeroCard
+            {
+                //title for the given
+                Title = "Progress details for the ticket " + response,
+                // subtitle for the card
+                Subtitle = status,
+                //Detail text
+                Text = "Latest work carried out on your raised ticket includes: " + notesresult,
+                //list of buttons
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Need further details? ", value: "https://www.t-systems.hu/about-t-systems/customer-contact/service-desk"),
+                    new CardAction(ActionTypes.PostBack, "Contact us at", value: "https://www.t-systems.com/de/en/contacts")}
+            };
+            return heroCard.ToAttachment();
+        }
+
+        
     }
 }
