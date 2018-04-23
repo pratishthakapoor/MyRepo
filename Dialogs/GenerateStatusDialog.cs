@@ -106,7 +106,17 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                  */
 
                 if (statusDetails == "1")
-                    await context.PostAsync("Your token is created and is under review by our team.");
+                {
+                    var status = "Your token is created and is under review by our team.";
+                    string Notesresult = SnowLogger.RetrieveIncidentWorkNotes(response);
+
+                    var replyMessage = context.MakeMessage();
+                    Attachment attachment = GetReplyMessage(Notesresult, response, status);
+                    replyMessage.Attachments = new List<Attachment> { attachment };
+                    await context.PostAsync(replyMessage);
+
+                }
+                    
                 else if (statusDetails == "2")
                 {
                     var status = "Your ticket is in progress.";
@@ -180,7 +190,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 Text = "Latest work carried out on your raised ticket includes: " + notesresult,
                 //list of buttons
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Need further details? ", value: "https://www.t-systems.hu/about-t-systems/customer-contact/service-desk"),
-                    new CardAction(ActionTypes.PostBack, "Contact us at", value: "https://www.t-systems.com/de/en/contacts")}
+                    new CardAction(ActionTypes.OpenUrl, "Contact us at", value: "https://www.t-systems.com/de/en/contacts")}
             };
             return heroCard.ToAttachment();
         }
