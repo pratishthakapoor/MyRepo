@@ -5,7 +5,6 @@ using Microsoft.Bot.Builder.Scorables.Internals;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Sample.ProactiveBot;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -14,11 +13,11 @@ using System.Web;
 
 namespace ProactiveBot.Dialogs.ScorableDialogs
 {
-    public class RaiseTicketScorable : ScorableBase<IActivity, string, double>
+    public class RaiseIssueScorable : ScorableBase<IActivity, string, double>
     {
         private readonly IDialogTask task;
 
-        public RaiseTicketScorable(IDialogTask task)
+        public RaiseIssueScorable(IDialogTask task)
         {
             SetField.NotNull(out this.task, nameof(task), task);
         }
@@ -44,13 +43,14 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
 
             if (message != null)
             {
-                var Raisedialog = new RaiseDialog();
+                var newDialog = new RaiseIssueDialog();
 
-                var interruption = Raisedialog.Void<object, IMessageActivity>();
+                var interruption = newDialog.Void<object, IMessageActivity>();
 
                 task.Call(interruption, null);
 
                 await task.PollAsync(token);
+
             }
         }
 
@@ -59,9 +59,8 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
             var message = item as IMessageActivity;
             if (message != null && !string.IsNullOrWhiteSpace(message.Text))
             {
-                if (message.Text.Equals("Raise Ticket", StringComparison.InvariantCultureIgnoreCase) ||
-                    message.Text.Equals("I want to raise a ticket", StringComparison.InvariantCultureIgnoreCase) ||
-                    message.Text.Equals("Raise ticket for me", StringComparison.InvariantCultureIgnoreCase))
+                if (message.Text.Equals("Raise Issue", StringComparison.InvariantCultureIgnoreCase) ||
+                    message.Text.Equals("Raise an Issue", StringComparison.InvariantCultureIgnoreCase))
                 {
                     return message.Text;
                 }

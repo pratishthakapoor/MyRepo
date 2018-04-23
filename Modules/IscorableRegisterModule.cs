@@ -44,6 +44,15 @@ namespace ProactiveBot.Modules
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();*/
 
+            /**
+             * Registering builder for RaiseIssueScorable
+             **/
+
+            builder
+                .Register(c => new RaiseIssueScorable(c.Resolve<IDialogTask>()))
+                .As<IScorable<IActivity, double>>()
+                .InstancePerLifetimeScope();
+
         }
     }
 }

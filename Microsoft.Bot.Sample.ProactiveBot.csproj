@@ -198,6 +198,7 @@
     <Compile Include="Dialogs\RaiseTicketDialog.cs" />
     <Compile Include="Dialogs\ResetPasswordDialog.cs" />
     <Compile Include="Dialogs\ScorableDialogs\CancelScorable.cs" />
+    <Compile Include="Dialogs\ScorableDialogs\RaiseIssueScorable.cs" />
     <Compile Include="Dialogs\ScorableDialogs\RaiseTicketScorable.cs" />
     <Compile Include="Dialogs\ScorableDialogs\ScorableRootDialog.cs" />
     <Compile Include="Dialogs\ScorableDialogs\VirtualMachineScroable.cs" />
