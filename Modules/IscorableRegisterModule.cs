@@ -53,6 +53,10 @@ namespace ProactiveBot.Modules
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();
 
+            /**
+             * Registering builder for StatusScorableDialog
+             **/
+
             builder
                 .Register(c => new StatusScorableDialog(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
