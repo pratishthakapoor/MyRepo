@@ -57,16 +57,13 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
         {
             var message = item as IMessageActivity;
 
-            if(message != null)
+            if(message != null && !string.IsNullOrWhiteSpace(message.Text))
             {
-                if(message != null && string.IsNullOrWhiteSpace(message.Text))
+                if (message.Text.Equals("Check previous raised Ticket Status", StringComparison.InvariantCultureIgnoreCase)
+                         || message.Text.Equals("Tell me about my previous raised ticket", StringComparison.InvariantCultureIgnoreCase) ||
+                         message.Text.Equals("Show me my prevoius raised ticket", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    if(message.Text.Equals("Check previous raised Ticket Status", StringComparison.InvariantCultureIgnoreCase)
-                        || message.Text.Equals("Tell me about my previous raised ticket", StringComparison.InvariantCultureIgnoreCase) ||
-                        message.Text.Equals("Show me my prevoius raised ticket", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        return message.Text;
-                    }
+                    return message.Text;
                 }
             }
             return null;
