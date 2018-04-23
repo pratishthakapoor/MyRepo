@@ -61,6 +61,12 @@ namespace ProactiveBot.Modules
                 .Register(c => new StatusScorableDialog(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .Register(c => new ServerPasswordReset(c.Resolve<IDialogTask>()))
+                .As<IScorable<IActivity, double>>()
+                .InstancePerLifetimeScope();
+
         }
     }
 }

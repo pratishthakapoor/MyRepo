@@ -201,6 +201,7 @@
     <Compile Include="Dialogs\ScorableDialogs\RaiseIssueScorable.cs" />
     <Compile Include="Dialogs\ScorableDialogs\RaiseTicketScorable.cs" />
     <Compile Include="Dialogs\ScorableDialogs\ScorableRootDialog.cs" />
+    <Compile Include="Dialogs\ScorableDialogs\ServerPasswordReset.cs" />
     <Compile Include="Dialogs\ScorableDialogs\StatusScorableDialog.cs" />
     <Compile Include="Dialogs\ScorableDialogs\VirtualMachineScroable.cs" />
     <Compile Include="Modules\IscorableRegisterModule.cs" />
