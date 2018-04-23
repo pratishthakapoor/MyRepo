@@ -62,6 +62,10 @@ namespace ProactiveBot.Modules
                 .As<IScorable<IActivity, double>>()
                 .InstancePerLifetimeScope();
 
+            /**
+             * Registering builder for ServerPasswordResetScorable
+             **/
+            
             builder
                 .Register(c => new ServerPasswordReset(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()

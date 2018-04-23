@@ -9,7 +9,8 @@ using Microsoft.Bot.Connector;
 namespace Microsoft.Bot.Sample.ProactiveBot
 {
     [Serializable]
-    public class TicketModel
+
+    public class TicketModel : LuisDialog<object>
     {
         //Prompts for the form flow question generation
 

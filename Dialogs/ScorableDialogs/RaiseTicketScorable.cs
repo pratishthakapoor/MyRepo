@@ -1,5 +1,6 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
+using Microsoft.Bot.Builder.FormFlow;
 using Microsoft.Bot.Builder.Internals.Fibers;
 using Microsoft.Bot.Builder.Scorables.Internals;
 using Microsoft.Bot.Connector;
@@ -44,9 +45,10 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
 
             if (message != null)
             {
-                var Raisedialog = new RaiseDialog();
 
-                var interruption = Raisedialog.Void<object, IMessageActivity>();
+                var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
+
+                var interruption = ticketForm.Void<object, IMessageActivity>();
 
                 task.Call(interruption, null);
 
