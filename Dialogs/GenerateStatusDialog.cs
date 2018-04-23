@@ -19,7 +19,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
 {
 	[Serializable]
 	
-	public class GenrateStatusDialog : IDialog<object>
+	public class GenerateStatusDialog : IDialog<object>
 	{
 		public async Task StartAsync(IDialogContext context)
 		{
