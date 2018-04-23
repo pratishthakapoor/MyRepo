@@ -187,7 +187,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                 // subtitle for the card
                 Subtitle = status,
                 //Detail text
-                Text = "Latest work carried out on your raised ticket includes: " + notesresult,
+                Text = "Latest work carried out on your raised ticket includes:<br>" + notesresult,
                 //list of buttons
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Need further details? ", value: "https://www.t-systems.hu/about-t-systems/customer-contact/service-desk"),
                     new CardAction(ActionTypes.OpenUrl, "Contact us at", value: "https://www.t-systems.com/de/en/contacts")}
