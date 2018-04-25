@@ -10,8 +10,6 @@ namespace ProactiveBot.SentimentAnalysis
 
     internal class DocumentCollectionMaxDocumentException : Exception
     {
-        private int v1;
-        private int v2;
 
         #region Constructors 
         /// <summary>
