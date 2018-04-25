@@ -46,7 +46,9 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
             if (message != null)
             {
 
-                var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
+                //var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
+
+                var ticketForm = new RaiseDialog();
 
                 var interruption = ticketForm.Void<object, IMessageActivity>();
 
