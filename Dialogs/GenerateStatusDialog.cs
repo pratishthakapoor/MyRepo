@@ -188,6 +188,10 @@ namespace Microsoft.Bot.Sample.ProacticeBot
 
         private Attachment GetReplyMessage(string notesresult, string response, string status)
         {
+            /**
+             * Hero card creation 
+             **/
+             
             var heroCard = new HeroCard
             {
                 //title for the given
