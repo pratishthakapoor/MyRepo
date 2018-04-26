@@ -18,6 +18,15 @@ namespace ProactiveBot.Modules
             base.Load(builder);
 
             /**
+             * 
+             **/
+
+            builder
+                .Register(c => new ScorableRootDialog(c.Resolve<IDialogTask>()))
+                .As<IScorable<IActivity, double>>()
+                .InstancePerLifetimeScope();
+
+            /**
              * registering builder for CancelScrolable
              **/
 
