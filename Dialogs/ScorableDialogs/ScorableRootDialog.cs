@@ -61,7 +61,7 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
                 else if(incomingMessage.Contains("i am good") || incomingMessage.Contains(" i am fine") || 
                     incomingMessage.Contains(" i am fine") || incomingMessage.Contains("nice") || incomingMessage.Contains("good"))
                 {
-                    messageToSend = "Nice to know that. Shall we get started";
+                    messageToSend = "Nice to know that";
                     var commonResponseDialog = new CommonnResponseDialog(messageToSend);
                     interruption = commonResponseDialog.Void<object, IMessageActivity>();
                 }
@@ -78,6 +78,13 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
 
                     if (incomingMessage.Contains("no") || incomingMessage.Contains("nope"))
                         messageToSend = "Ok, bye hope to see you soon";
+
+                    if (incomingMessage.Contains("yup") || incomingMessage.Contains("yes") || incomingMessage.Contains("ya"))
+                    {
+                        messageToSend = "Ok, let's begin then";
+                    }
+                        
+
 
                     var commonResponseDialog = new CommonnResponseDialog(messageToSend);
                     interruption = commonResponseDialog.Void<object, IMessageActivity>();
@@ -97,7 +104,7 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
 
                 if(msg == "ok" || msg == "thank you" || msg == "goodbye" || msg == "fine" || msg == "hmm" || msg == "good" 
                     || msg == "nice" || msg == "okay" || msg == "how are you" || msg == "i am fine" || msg == "i am good"
-                    || msg == " i am nice" || msg == "no" || msg == "nope")
+                    || msg == " i am nice" || msg == "no" || msg == "nope" || msg == "yup" || msg == "yes" || msg == "ya")
                 {
                     return message.Text;
                 }
