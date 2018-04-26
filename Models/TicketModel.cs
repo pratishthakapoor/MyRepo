@@ -138,6 +138,11 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                        SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
                                        @UserName, @EmailId, @ContactNo)", connection);
 
+                                if (state.PhoneContact == "Null")
+                                    state.PhoneContact = "None";
+                                else
+                                    state.Contact = "None";
+
                                 /**
                                  * Commands to insert the user response to the database 
                                  **/
