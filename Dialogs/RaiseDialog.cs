@@ -171,7 +171,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 {
                     var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
                     //context.Call(ticketForm, getKeyPhrases);
-                    context.Call(ticketForm, getUserSentiment);
+                    context.Call(ticketForm, ChildDialogComplete);
 
                 }
                 catch(FormCanceledException<TicketModel> cancelled)
@@ -318,188 +318,6 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
         }
 
-        /**
-         * Method to calculate the user sentiment score
-         **/
-
-        private async Task getUserSentiment(IDialogContext context, IAwaitable<TicketModel> result)
-        {
-            var sentence = await result;
-            // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
-            //string sentenceString = sentence.Desc;
-
-            /**
-             * To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
-             * The QnA maker sends the appropriate response to the user queries 
-             **/
-
-            await context.PostAsync("Let me search my database for a solution to your problem");
-            try
-            {
-                var activity = (Activity)context.MakeMessage();
-                activity.Text = sentenceString;
-
-                /**
-                 * Call to the sentiment analytics api
-                 **/
-
-                var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
-                var sentimentScore = Math.Round(sentiment * 100, 1)/10;
-
-                /**
-                 * Query to check the user issue in the QnA maker knowledge base
-                 **/
-
-                var subscriptionKey = ConfigurationManager.AppSettings["QnaSubscriptionkey"];
-                var knowledgeBaseId = ConfigurationManager.AppSettings["QnaKnowledgebaseId"];
-
-                var responseQuery = new QnAMakerDailog.QnAMakerDialog().GetQnAMakerResponse(sentenceString, subscriptionKey, knowledgeBaseId);
-
-                var responseAnswers = responseQuery.answers.FirstOrDefault();
-
-                /**
-                 * If the solution to the issue is found in the Kb then send the result to the user
-                 **/
-
-                if (responseAnswers != null && responseAnswers.score >= double.Parse(ConfigurationManager.AppSettings["QnAScore"]))
-                {
-                    await context.PostAsync(responseAnswers.answer);
-                }
-
-                /**
-                 * If no solution is found then the user response from TicketModel is sent to the Dtabase APRDB and stored in dbo.BotDetails Table
-                 **/
-
-                else
-                {
-                    await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
-                    try
-                    {
-                        string connectionEstablish = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
-
-                        /**
-                         * Establish the connection with the SQL database
-                         **/
-
-                        SqlConnection connection = new SqlConnection(connectionEstablish);
-
-                        /**
-                         * Connection to the DB being opened
-                         **/
-
-                        connection.Open();
-                        if (connection.State == System.Data.ConnectionState.Open)
-                        {
-                            Console.WriteLine("Connection Success");
-
-                            /**
-                             * SQL command to insert data into the table dbo.BotDetails
-                             **/
-
-                            SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
-                                       SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
-                                       @UserName, @EmailId, @ContactNo)", connection);
-
-                            /**
-                             * Commands to insert the user response to the database 
-                             **/
-
-                            insertCommand.Parameters.Add(new SqlParameter("TokenDescription", sentence.Desc));
-                            insertCommand.Parameters.Add(new SqlParameter("ServerDetails", sentence.ServerName));
-                            insertCommand.Parameters.Add(new SqlParameter("MiddlewareDetails", sentence.MiddlewareName));
-                            insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", sentence.DatabaseName));
-                            insertCommand.Parameters.Add(new SqlParameter("TokenDetails", System.DateTimeOffset.Now));
-                            insertCommand.Parameters.Add(new SqlParameter("SentimentScore", sentimentScore));
-                            insertCommand.Parameters.Add(new SqlParameter("UserName", sentence.Name));
-                            insertCommand.Parameters.Add(new SqlParameter("EmailId", sentence.Contact));
-                            insertCommand.Parameters.Add(new SqlParameter("ContactNo", sentence.PhoneContact));
-
-                            var DBresult = insertCommand.ExecuteNonQuery();
-                            if (DBresult > 0)
-                            {
-                                connection.Close();
-
-                                string ReconnectionEstablish = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
-
-                                SqlConnection conn = new SqlConnection(ReconnectionEstablish);
-
-                                conn.Open();
-
-                                var selectTicketId = "Select Id from dbo.BotDetails WHERE UserName = @UserName";
-
-                                SqlCommand selectCommand = new SqlCommand(selectTicketId, conn);
-
-                                selectCommand.Parameters.AddWithValue("@UserName", sentence.Name);
-
-                                using (SqlDataReader queryReader = selectCommand.ExecuteReader())
-                                {
-                                    
-                                    while (queryReader.Read())
-                                    {
-                                        String retrieveId = queryReader.GetInt32(0).ToString();
-                                        //await context.PostAsync("Your ticket has been raised successfully, " + retrieveId + " your token id for the raised ticket");
-                                    }
-                                    
-                                }
-                                    
-                            }
-
-                            else
-                            {
-                                await context.PostAsync("Some problem occured, Please try again after sometime");
-                            }
-
-                            /**
-                             * Close the existing connection to the DB
-                             **/
-
-                            connection.Close();
-                        }
-                        else
-                        {   
-                            /**
-                             * Checks wether the connection is established or not 
-                             **/
-                            Console.WriteLine("Not connected");
-                        }
-
-                        /**
-                         * Snow connection code
-                         **/
-                        string DetailDescription = sentence.Desc + " the services are running on server " + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + " service";
-                        String incidentNo = string.Empty;
-                        incidentNo = SnowLogger.CreateIncidentServiceNow(sentence.Desc, sentence.Contact, DetailDescription, sentence.CategoryName);
-                        Console.WriteLine(incidentNo);
-                        await context.PostAsync("Your ticket has been raised successfully, " + incidentNo + " your token id for the raised ticket");
-                        await context.PostAsync("Please keep the note of above token number. as it would be used for future references");
-                    }
-                    catch(Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
-                    context.Done(this);
-                }
-
-                /**
-                 * Method to check the user sentiment and report it to the user
-                 */
-
-                /*await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
-
-                if (sentiment <= 0.5)
-                {
-                    PromptDialog.Confirm(context, ResumeAfterFeedbackClarification, "I see it wasn't perfect, can we contact you about this?");
-                }*/
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
         // Method to extract the key phrases from the ticket model responses
 
         private async Task getKeyPhrases(IDialogContext context, IAwaitable<TicketModel> result)
@@ -540,6 +358,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             await context.PostAsync("Thank you for visting us.");
             context.Done(this);
         }
+
+
+        // Method not been used in the class
 
         /*private async Task <double> getSentimentScore(string DocumentText)
         {
@@ -590,6 +411,190 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         /**
          * Method tonhandle the interaction with the HP Service Manager - 9.0
          **/
-        
+
+        // method not used it is defined in the Ticket Model
+
+        /**
+         * Method to calculate the user sentiment score
+         **/
+
+        /*private async Task getUserSentiment(IDialogContext context, IAwaitable<TicketModel> result)
+        {
+            var sentence = await result;
+            // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
+            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            //string sentenceString = sentence.Desc;
+
+            /**
+             * To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
+             * The QnA maker sends the appropriate response to the user queries 
+             **/
+
+            /*await context.PostAsync("Let me search my database for a solution to your problem");
+            try
+            {
+                var activity = (Activity)context.MakeMessage();
+                activity.Text = sentenceString;
+
+                /**
+                 * Call to the sentiment analytics api
+                 **/
+
+                /*var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
+                var sentimentScore = Math.Round(sentiment * 100, 1) / 10;
+
+                /**
+                 * Query to check the user issue in the QnA maker knowledge base
+                 **/
+
+                /*var subscriptionKey = ConfigurationManager.AppSettings["QnaSubscriptionkey"];
+                var knowledgeBaseId = ConfigurationManager.AppSettings["QnaKnowledgebaseId"];
+
+                var responseQuery = new QnAMakerDailog.QnAMakerDialog().GetQnAMakerResponse(sentenceString, subscriptionKey, knowledgeBaseId);
+
+                var responseAnswers = responseQuery.answers.FirstOrDefault();
+
+                /**
+                 * If the solution to the issue is found in the Kb then send the result to the user
+                 **/
+
+                /*if (responseAnswers != null && responseAnswers.score >= double.Parse(ConfigurationManager.AppSettings["QnAScore"]))
+                {
+                    await context.PostAsync(responseAnswers.answer);
+                }
+
+                /**
+                 * If no solution is found then the user response from TicketModel is sent to the Dtabase APRDB and stored in dbo.BotDetails Table
+                 **/
+
+                /*else
+                {
+                    await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
+                    try
+                    {
+                        string connectionEstablish = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
+
+                        /**
+                         * Establish the connection with the SQL database
+                         **/
+
+                        /*SqlConnection connection = new SqlConnection(connectionEstablish);
+
+                        /**
+                         * Connection to the DB being opened
+                         **/
+
+                        /*connection.Open();
+                        if (connection.State == System.Data.ConnectionState.Open)
+                        {
+                            Console.WriteLine("Connection Success");
+
+                            /**
+                             * SQL command to insert data into the table dbo.BotDetails
+                             **/
+
+                            /*SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
+                                       SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
+                                       @UserName, @EmailId, @ContactNo)", connection);
+
+                            /**
+                             * Commands to insert the user response to the database 
+                             **/
+
+                            /*insertCommand.Parameters.Add(new SqlParameter("TokenDescription", sentence.Desc));
+                            insertCommand.Parameters.Add(new SqlParameter("ServerDetails", sentence.ServerName));
+                            insertCommand.Parameters.Add(new SqlParameter("MiddlewareDetails", sentence.MiddlewareName));
+                            insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", sentence.DatabaseName));
+                            insertCommand.Parameters.Add(new SqlParameter("TokenDetails", System.DateTimeOffset.Now));
+                            insertCommand.Parameters.Add(new SqlParameter("SentimentScore", sentimentScore));
+                            insertCommand.Parameters.Add(new SqlParameter("UserName", sentence.Name));
+                            insertCommand.Parameters.Add(new SqlParameter("EmailId", sentence.Contact));
+                            insertCommand.Parameters.Add(new SqlParameter("ContactNo", sentence.PhoneContact));
+
+                            var DBresult = insertCommand.ExecuteNonQuery();
+                            if (DBresult > 0)
+                            {
+                                connection.Close();
+
+                                string ReconnectionEstablish = ConfigurationManager.ConnectionStrings["APRMConnection"].ConnectionString;
+
+                                SqlConnection conn = new SqlConnection(ReconnectionEstablish);
+
+                                conn.Open();
+
+                                var selectTicketId = "Select Id from dbo.BotDetails WHERE UserName = @UserName";
+
+                                SqlCommand selectCommand = new SqlCommand(selectTicketId, conn);
+
+                                selectCommand.Parameters.AddWithValue("@UserName", sentence.Name);
+
+                                using (SqlDataReader queryReader = selectCommand.ExecuteReader())
+                                {
+
+                                    while (queryReader.Read())
+                                    {
+                                        String retrieveId = queryReader.GetInt32(0).ToString();
+                                        //await context.PostAsync("Your ticket has been raised successfully, " + retrieveId + " your token id for the raised ticket");
+                                    }
+
+                                }
+
+                            }
+
+                            else
+                            {
+                                await context.PostAsync("Some problem occured, Please try again after sometime");
+                            }
+
+                            /**
+                             * Close the existing connection to the DB
+                             **/
+
+                            /*connection.Close();
+                        }
+                        else
+                        {
+                            /**
+                             * Checks wether the connection is established or not 
+                             **/
+                            /*Console.WriteLine("Not connected");
+                        }
+
+                        /**
+                         * Snow connection code
+                         **/
+                        /*string DetailDescription = sentence.Desc + " the services are running on server " + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + " service";
+                        String incidentNo = string.Empty;
+                        incidentNo = SnowLogger.CreateIncidentServiceNow(sentence.Desc, sentence.Contact, DetailDescription, sentence.CategoryName);
+                        Console.WriteLine(incidentNo);
+                        await context.PostAsync("Your ticket has been raised successfully, " + incidentNo + " your token id for the raised ticket");
+                        await context.PostAsync("Please keep the note of above token number. as it would be used for future references");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    context.Done(this);
+                }
+
+                /**
+                 * Method to check the user sentiment and report it to the user
+                 */
+
+                /*await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
+
+                if (sentiment <= 0.5)
+                {
+                    PromptDialog.Confirm(context, ResumeAfterFeedbackClarification, "I see it wasn't perfect, can we contact you about this?");
+                }*/
+            //}
+
+            /*catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }*/
+
     }
 }

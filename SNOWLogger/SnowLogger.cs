@@ -15,7 +15,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
     public class SnowLogger
     {
-        public static string CreateIncidentServiceNow(string shortDescription, string contact, string Description, string category_name)
+        public static string CreateIncidentServiceNow(string shortDescription, string contactType, string Description, string category_name)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     {
                         description = Description,
                         short_description = shortDescription,
-                        contact_type = contact,
+                        contact_type = contactType,
                         category = category_name,
                         subcategory = ConfigurationManager.AppSettings["ServiceNowSubCategory"],
                         assignment_group = ConfigurationManager.AppSettings["ServiceNowAssignmentGroup"],
