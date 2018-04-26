@@ -55,11 +55,15 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
                 if(incomingMessage.Contains("how are you"))
                 {
                     messageToSend = "I am good. How about you?";
+                    var commonResponseDialog = new CommonnResponseDialog(messageToSend);
+                    interruption = commonResponseDialog.Void<object, IMessageActivity>();
                 }
                 else if(incomingMessage.Contains("i am good") || incomingMessage.Contains(" i am fine") || 
                     incomingMessage.Contains(" i am fine") || incomingMessage.Contains("nice") || incomingMessage.Contains("good"))
                 {
-                    messageToSend = "Nice to know that. Shall we get started"; 
+                    messageToSend = "Nice to know that. Shall we get started";
+                    var commonResponseDialog = new CommonnResponseDialog(messageToSend);
+                    interruption = commonResponseDialog.Void<object, IMessageActivity>();
                 }
                 else
                 {
@@ -75,7 +79,8 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
                     if (incomingMessage.Contains("no") || incomingMessage.Contains("nope"))
                         messageToSend = "Ok, bye hope to see you soon";
 
-
+                    var commonResponseDialog = new CommonnResponseDialog(messageToSend);
+                    interruption = commonResponseDialog.Void<object, IMessageActivity>();
                 }
 
                 this.task.Call(interruption, null);
