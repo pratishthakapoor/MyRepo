@@ -138,27 +138,35 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                     
                 else if (statusDetails == "6")
                 {
-                    await context.PostAsync("Your ticket is resolved.");
+                    var status = "Your ticket is resolved.";
 
                     /**
                      * Retrieves the details from the resolve columns of SnowLogger class if the incident token is being resolved
                      **/
 
                     string resolveDetails = SnowLogger.RetrieveIncidentResolveDetails(response);
-                    await context.PostAsync("For the ticket id " + response+ " solution fetched by our team is : " + resolveDetails);
+                    var replyMessage = context.MakeMessage();
+                    Attachment attachment = GetReplyMessage(resolveDetails, response, status);
+                    replyMessage.Attachments = new List<Attachment> { attachment };
+                    //await context.PostAsync("For the ticket id " + response+ " solution fetched by our team is : " + resolveDetails);
+                    await context.PostAsync(replyMessage);
                 }
                    
                     
                 else if (statusDetails == "7")
                 {
-                    await context.PostAsync("Your ticket has been closed by our team");
+                    var status = "Your ticket has been closed by our team";
 
                     /**
                      * Retrieves the close_code from the SnowLogger class if the incident token is being closed
                      **/
 
                     string resolveDetails = SnowLogger.RetrieveIncidentCloseDetails(response);
-                    await context.PostAsync("Reasons for closing the ticket: " + resolveDetails);
+                    var replyMessage = context.MakeMessage();
+                    Attachment attachment = GetReplyMessage(resolveDetails, response, status);
+                    replyMessage.Attachments = new List<Attachment> { attachment };
+                    //await context.PostAsync("Reasons for closing the ticket: " + resolveDetails);
+                    await context.PostAsync(replyMessage);
                 }
                     
                 else
