@@ -208,6 +208,9 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             String incidentNo = string.Empty;
                             string contactOption;
 
+                            /*
+                             * If else condition to catch the contact option
+                             */
                             if (state.ContactType == ContactTypeOptions.Email)
                             {
                                 contactOption = "Email";
@@ -282,15 +285,6 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 result.IsValid = false;
                 result.Feedback = "Please enter a valid contact number";
             }
-
-
-            /*var heroCard = new HeroCard
-            {
-                Text = "Do you want us to contact you?",
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.MessageBack, "Call me!", value : "We will call you within 15 mins"),
-                   new CardAction(ActionTypes.MessageBack, "Don't Call", value:"Ok")}
-            };
-            Attachment attachment = heroCard.ToAttachment();*/
             return Task.FromResult(result);
         }
 
