@@ -272,7 +272,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Message("According to the responses entered by you I have generated a statement for you that showscase you problem : " +
                  "{Desc} running on server {ServerName}, using {DatabaseName} database and the {MiddlewareName} services used by you.")
                 //"Please enter Yes if this successfully describe your problem.")
-                //.OnCompletion(ConnectionRequest)
+                .OnCompletion(ConnectionRequest)
                 .Build();
         }
 
