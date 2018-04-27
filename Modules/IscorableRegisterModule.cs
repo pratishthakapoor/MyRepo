@@ -48,10 +48,10 @@ namespace ProactiveBot.Modules
              * Registering builder for RaiseTicketDialog
              **/
 
-            /*builder
+            builder
                 .Register(c => new RaiseTicketScorable(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
             /**
              * Registering builder for RaiseIssueScorable
