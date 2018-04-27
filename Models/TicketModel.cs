@@ -254,7 +254,6 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     Console.WriteLine(ex.Message);
                 }
 
-                context.Done(new RaiseDialog());
             };
 
             return new FormBuilder<TicketModel>()
