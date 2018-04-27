@@ -21,28 +21,28 @@ namespace ProactiveBot.Modules
              * 
              **/
 
-            /*builder
+            builder
                 .Register(c => new ScorableRootDialog(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
             /**
              * registering builder for CancelScrolable
              **/
 
-            /*builder
+            builder
                 .Register(c => new CancelScorable(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
             /**
              * Registering builder for VMConfigScroable
              **/
 
-            /*builder
+            builder
                 .Register(c => new VirtualMachineScroable(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
             /**
              * Registering builder for RaiseTicketDialog
@@ -57,28 +57,28 @@ namespace ProactiveBot.Modules
              * Registering builder for RaiseIssueScorable
              **/
 
-            /*builder
+            builder
                 .Register(c => new RaiseIssueScorable(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
             /**
              * Registering builder for StatusScorableDialog
              **/
 
-            /*builder
+            builder
                 .Register(c => new StatusScorableDialog(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
             /**
              * Registering builder for ServerPasswordResetScorable
              **/
             
-            /*builder
+            builder
                 .Register(c => new ServerPasswordReset(c.Resolve<IDialogTask>()))
                 .As<IScorable<IActivity, double>>()
-                .InstancePerLifetimeScope();*/
+                .InstancePerLifetimeScope();
 
         }
     }
