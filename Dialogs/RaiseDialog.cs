@@ -171,7 +171,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 {
                     var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
                     //context.Call(ticketForm, getKeyPhrases);
-                    context.Call(ticketForm, ChildDialog);
+                    context.Call(ticketForm, ChildDialogComplete);
 
                 }
                 catch(FormCanceledException<TicketModel> cancelled)
