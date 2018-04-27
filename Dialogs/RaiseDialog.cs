@@ -418,7 +418,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
          * Method to calculate the user sentiment score
          **/
 
-        /*private async Task getUserSentiment(IDialogContext context, IAwaitable<TicketModel> result)
+        private async Task getUserSentiment(IDialogContext context, IAwaitable<TicketModel> result)
         {
             var sentence = await result;
             // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
@@ -430,7 +430,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
              * The QnA maker sends the appropriate response to the user queries 
              **/
 
-            /*await context.PostAsync("Let me search my database for a solution to your problem");
+            await context.PostAsync("Let me search my database for a solution to your problem");
             try
             {
                 var activity = (Activity)context.MakeMessage();
@@ -440,14 +440,14 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                  * Call to the sentiment analytics api
                  **/
 
-                /*var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
+                var sentiment = await TextAnalyticsService.DetermineSentimentAsync(sentence.ToString());
                 var sentimentScore = Math.Round(sentiment * 100, 1) / 10;
 
                 /**
                  * Query to check the user issue in the QnA maker knowledge base
                  **/
 
-                /*var subscriptionKey = ConfigurationManager.AppSettings["QnaSubscriptionkey"];
+                var subscriptionKey = ConfigurationManager.AppSettings["QnaSubscriptionkey"];
                 var knowledgeBaseId = ConfigurationManager.AppSettings["QnaKnowledgebaseId"];
 
                 var responseQuery = new QnAMakerDailog.QnAMakerDialog().GetQnAMakerResponse(sentenceString, subscriptionKey, knowledgeBaseId);
@@ -458,7 +458,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                  * If the solution to the issue is found in the Kb then send the result to the user
                  **/
 
-                /*if (responseAnswers != null && responseAnswers.score >= double.Parse(ConfigurationManager.AppSettings["QnAScore"]))
+                if (responseAnswers != null && responseAnswers.score >= double.Parse(ConfigurationManager.AppSettings["QnAScore"]))
                 {
                     await context.PostAsync(responseAnswers.answer);
                 }
@@ -467,7 +467,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                  * If no solution is found then the user response from TicketModel is sent to the Dtabase APRDB and stored in dbo.BotDetails Table
                  **/
 
-                /*else
+                else
                 {
                     await context.PostAsync("Could not find a solution to you problem . I have raised a ticket for it, revert to you as soon as we get a solution for it");
                     try
@@ -478,13 +478,13 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                          * Establish the connection with the SQL database
                          **/
 
-                        /*SqlConnection connection = new SqlConnection(connectionEstablish);
+                        SqlConnection connection = new SqlConnection(connectionEstablish);
 
                         /**
                          * Connection to the DB being opened
                          **/
 
-                        /*connection.Open();
+                        connection.Open();
                         if (connection.State == System.Data.ConnectionState.Open)
                         {
                             Console.WriteLine("Connection Success");
@@ -493,7 +493,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                              * SQL command to insert data into the table dbo.BotDetails
                              **/
 
-                            /*SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
+                            SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
                                        SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
                                        @UserName, @EmailId, @ContactNo)", connection);
 
@@ -501,7 +501,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                              * Commands to insert the user response to the database 
                              **/
 
-                            /*insertCommand.Parameters.Add(new SqlParameter("TokenDescription", sentence.Desc));
+                            insertCommand.Parameters.Add(new SqlParameter("TokenDescription", sentence.Desc));
                             insertCommand.Parameters.Add(new SqlParameter("ServerDetails", sentence.ServerName));
                             insertCommand.Parameters.Add(new SqlParameter("MiddlewareDetails", sentence.MiddlewareName));
                             insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", sentence.DatabaseName));
@@ -550,20 +550,20 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                              * Close the existing connection to the DB
                              **/
 
-                            /*connection.Close();
+                            connection.Close();
                         }
                         else
                         {
                             /**
                              * Checks wether the connection is established or not 
                              **/
-                            /*Console.WriteLine("Not connected");
+                            Console.WriteLine("Not connected");
                         }
 
                         /**
                          * Snow connection code
                          **/
-                        /*string DetailDescription = sentence.Desc + " the services are running on server " + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + " service";
+                        string DetailDescription = sentence.Desc + " the services are running on server " + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + " service";
                         String incidentNo = string.Empty;
                         incidentNo = SnowLogger.CreateIncidentServiceNow(sentence.Desc, sentence.Contact, DetailDescription, sentence.CategoryName);
                         Console.WriteLine(incidentNo);
@@ -582,19 +582,19 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                  * Method to check the user sentiment and report it to the user
                  */
 
-                /*await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
+                await context.PostAsync($"You rated our service as: {Math.Round(sentiment * 10, 1)}/10");
 
                 if (sentiment <= 0.5)
                 {
                     PromptDialog.Confirm(context, ResumeAfterFeedbackClarification, "I see it wasn't perfect, can we contact you about this?");
-                }*/
-            //}
+                }
+            }
 
-            /*catch (Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-        }*/
+        }
 
     }
 }
