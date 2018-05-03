@@ -138,8 +138,10 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                        SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
                                        @UserName, @EmailId, @ContactNo)", connection);
 
-                                if (state.PhoneContact == "Null")
+                                if (state.PhoneContact == null)
+                                {
                                     state.PhoneContact = "None";
+                                }
                                 else
                                     state.Contact = "None";
 
