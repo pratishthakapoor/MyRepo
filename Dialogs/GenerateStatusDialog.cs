@@ -162,8 +162,9 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                      **/
 
                     string resolveDetails = SnowLogger.RetrieveIncidentCloseDetails(response);
+                    string completeDetails = resolveDetails + "\n\n" + SnowLogger.RetrieveIncidentResolveDetails(response);
                     var replyMessage = context.MakeMessage();
-                    Attachment attachment = GetReplyMessage(resolveDetails, response, status);
+                    Attachment attachment = GetReplyMessage(completeDetails, response, status);
                     replyMessage.Attachments = new List<Attachment> { attachment };
                     //await context.PostAsync("Reasons for closing the ticket: " + resolveDetails);
                     await context.PostAsync(replyMessage);

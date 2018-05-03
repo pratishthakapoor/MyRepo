@@ -213,6 +213,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 //await context.PostAsync($"Just, reverting you there ");
                 context.Call(new RaiseIssueDialog(), ChildDialogComplete);
             }
+            //context.Done(this);
         }
 
         /**
