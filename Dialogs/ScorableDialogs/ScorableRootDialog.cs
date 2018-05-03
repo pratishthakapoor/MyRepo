@@ -65,6 +65,15 @@ namespace ProactiveBot.Dialogs.ScorableDialogs
                     var commonResponseDialog = new CommonnResponseDialog(messageToSend);
                     interruption = commonResponseDialog.Void<object, IMessageActivity>();
                 }
+
+                else if(incomingMessage.Contains("help"))
+                {
+                    messageToSend = Responses.HelpMessage;
+                    var commonResponseDialog = new CommonnResponseDialog(messageToSend);
+                    interruption = commonResponseDialog.Void<object, IMessageActivity>();
+                }
+
+
                 else
                 {
                     if (incomingMessage.Contains("thank you"))
