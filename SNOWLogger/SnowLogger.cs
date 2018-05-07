@@ -15,13 +15,50 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
     public class SnowLogger
     {
+        string tablename;
+
+        public static string GetTablename()
+        {
+            try
+            {
+                string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
+                string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
+                string URL = "https://dev56432.service-now.com/api/now/table/sys_db_object?sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
+                //+ "sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
+                var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+
+                HttpWebRequest RetrieveRequest = WebRequest.Create(URL) as HttpWebRequest;
+                RetrieveRequest.Headers.Add("Authorization", auth);
+                RetrieveRequest.Method = "GET";
+                using (HttpWebResponse SnowResponse = RetrieveRequest.GetResponse() as HttpWebResponse)
+                {
+                    var result = new StreamReader(SnowResponse.GetResponseStream()).ReadToEnd();
+
+                    JObject jResponse = JObject.Parse(result.ToString());
+                    JToken obObject = jResponse["result"];
+                    JEnumerable<JToken> incidentStatus = (JEnumerable<JToken>)obObject.Values("name");
+                    foreach (var item in incidentStatus)
+                    {
+                        if (item != null)
+                            return ((JValue)item).Value.ToString();
+                    }
+                }
+                return String.Empty;
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+
         public static string CreateIncidentServiceNow(string shortDescription, string contactType, string Description, string category_name)
         {
             try
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = ConfigurationManager.AppSettings["ServiceNowURL"];
+                //string URL = ConfigurationManager.AppSettings["ServiceNowURL"];
+                string URL = ConfigurationManager.AppSettings["ServiceNowUrl"] + GetTablename();
 
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
@@ -77,7 +114,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + "?" + "sysparm_query=number=" + Ticketresponse;
+                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + GetTablename() + "?" + "sysparm_query=number=" + Ticketresponse;
 
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
@@ -113,7 +150,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + "?" + "sysparm_query=number=" + Newresponse;
+                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + GetTablename() + "?" + "sysparm_query=number=" + Newresponse;
 
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
@@ -149,7 +186,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + "?" + "sysparm_query=number=" + Detailresponse;
+                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + GetTablename() + "?" + "sysparm_query=number=" + Detailresponse;
 
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
@@ -185,7 +222,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + "?" + "sysparm_query=number=" + Notesresponse;
+                string URL = ConfigurationManager.AppSettings["ServiceNowURL"] + GetTablename() + "?" + "sysparm_query=number=" + Notesresponse;
 
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
