@@ -50,7 +50,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         public string MiddlewareName { get; set; }
 
         [Prompt(new string[] { "Which database are used by you ? "})]
-        public string DatabaseName { get; set; }
+        public string DBName { get; set; }
 
         [Prompt(new string[] { "Please select a category (Inquiry, Software, Hadware, Network, Database)"})]
         public string CategoryName { get; set; }
@@ -64,7 +64,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
             OnCompletionAsyncDelegate<TicketModel> ConnectionRequest = async (context, state) =>
             {
-                string sentenceString = state.Desc + "-" + state.DatabaseName + "-" + state.ServerName + "-" + state.MiddlewareName;
+                string sentenceString = state.Desc + "-" + state.DBName + "-" + state.ServerName + "-" + state.MiddlewareName;
 
                 /**
              * To call the GetQnAMakerResponse to get the responses to the user queries from QnA Maker KB
@@ -211,7 +211,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             /**
                              * Snow connection code
                              **/
-                            string DetailDescription = state.Desc + " the services are running on server " + state.ServerName + ", using " + state.DatabaseName + " database and the" + state.MiddlewareName + " service";
+                            string DetailDescription = state.Desc + " the services are running on server " + state.ServerName + ", using " + state.DBName + " database and the" + state.MiddlewareName + " service";
                             String incidentNo = string.Empty;
                             string contactOption;
 
@@ -263,7 +263,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(Desc))
                 .Field(nameof(ServerName)/*validate: ValidateServerInfo*/)
                 .Field(nameof(MiddlewareName), validate: ValidateMiddlewareInfo)
-                .Field(nameof(DatabaseName), validate: ValidateDatabaseInfo)
+                .Field(nameof(DBName), validate: ValidateDatabaseInfo)
                 .Field(nameof(CategoryName))
                 //.Field(nameof(Priority))
                 .Field(nameof(ContactType))
@@ -271,7 +271,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 .Field(nameof(PhoneContact), (s) => s.ContactType == ContactTypeOptions.Phone, validate: ValidatePhoneContact)
                 .AddRemainingFields()
                 .Message("According to the responses entered by you I have generated a statement for you that showscase you problem : " +
-                 "{Desc} running on server {ServerName}, using {DatabaseName} database and the {MiddlewareName} services used by you.")
+                 "{Desc} running on server {ServerName}, using {DBName} database and the {MiddlewareName} services used by you.")
                 //"Please enter Yes if this successfully describe your problem.")
                 .OnCompletion(ConnectionRequest)
                 .Build();
@@ -402,7 +402,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
         private static bool DescriptionEnabled(TicketModel state) =>
              !string.IsNullOrWhiteSpace(state.ServerName) && !string.IsNullOrWhiteSpace(state.Name) &&  !string.IsNullOrWhiteSpace(state.Desc) && 
-             !string.IsNullOrWhiteSpace(state.MiddlewareName) && !string.IsNullOrWhiteSpace(state.DatabaseName);
+             !string.IsNullOrWhiteSpace(state.MiddlewareName) && !string.IsNullOrWhiteSpace(state.DBName);
 
         private static bool GetEmailAddress(string response, out string contactInfo)
         {

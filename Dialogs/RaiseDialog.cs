@@ -324,7 +324,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         private async Task getKeyPhrases(IDialogContext context, IAwaitable<TicketModel> result)
         {
             var sentence = await result;
-            string phraseString = sentence.Desc + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DatabaseName;
+            string phraseString = sentence.Desc + "/" + sentence.ServerName + "/" + sentence.MiddlewareName + "/" + sentence.DBName;
             var phrases = await KeyPhraseAnalytics.ExtractPhraseAsync(phraseString);
             string phraseResult = String.Join(",", phrases.ToArray());
             //string new_result = String.Concat(phraseString, phraseResult);
@@ -423,7 +423,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
         {
             var sentence = await result;
             // string sentenceString = sentence.DatabaseName + "-" + sentence.MiddlewareName + "-" + sentence.ServerName;
-            string sentenceString = sentence.Desc + "-" + sentence.DatabaseName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
+            string sentenceString = sentence.Desc + "-" + sentence.DBName + "-" + sentence.ServerName + "-" + sentence.MiddlewareName;
             //string sentenceString = sentence.Desc;
 
             /**
@@ -505,7 +505,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             insertCommand.Parameters.Add(new SqlParameter("TokenDescription", sentence.Desc));
                             insertCommand.Parameters.Add(new SqlParameter("ServerDetails", sentence.ServerName));
                             insertCommand.Parameters.Add(new SqlParameter("MiddlewareDetails", sentence.MiddlewareName));
-                            insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", sentence.DatabaseName));
+                            insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", sentence.DBName));
                             insertCommand.Parameters.Add(new SqlParameter("TokenDetails", System.DateTimeOffset.Now));
                             insertCommand.Parameters.Add(new SqlParameter("SentimentScore", sentimentScore));
                             insertCommand.Parameters.Add(new SqlParameter("UserName", sentence.Name));
@@ -564,7 +564,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                         /**
                          * Snow connection code
                          **/
-                        string DetailDescription = sentence.Desc + " the services are running on server " + sentence.ServerName + ", using " + sentence.DatabaseName + " database and the" + sentence.MiddlewareName + " service";
+                        string DetailDescription = sentence.Desc + " the services are running on server " + sentence.ServerName + ", using " + sentence.DBName + " database and the" + sentence.MiddlewareName + " service";
                         String incidentNo = string.Empty;
                         incidentNo = SnowLogger.CreateIncidentServiceNow(sentence.Desc, sentence.Contact, DetailDescription, sentence.CategoryName);
                         Console.WriteLine(incidentNo);
