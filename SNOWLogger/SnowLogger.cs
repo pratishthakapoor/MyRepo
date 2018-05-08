@@ -37,7 +37,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                     JObject jResponse = JObject.Parse(result.ToString());
                     JToken obObject = jResponse["result"];
                     
-                    JEnumerable<JToken> labelName = (JEnumerable<JToken>)obObject.Values("");
+                    JEnumerable<JToken> labelName = (JEnumerable<JToken>)obObject.Values("name");
                     //return labelName.ToString();
                     foreach (var item in labelName)
                     {
