@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Net;
@@ -15,16 +16,16 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
     public class SnowLogger
     {
-        string tablename;
-
+       
         public static string GetTablename()
         {
+            List<string> labelDetails = new List<string>();
             try
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = "https://dev56432.service-now.com/api/now/table/sys_db_object?sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
-                //+ "sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
+                string URL = "https://dev56432.service-now.com/api/now/table/sys_db_object";
+                //?sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
                 HttpWebRequest RetrieveRequest = WebRequest.Create(URL) as HttpWebRequest;
@@ -36,14 +37,20 @@ namespace Microsoft.Bot.Sample.ProactiveBot
 
                     JObject jResponse = JObject.Parse(result.ToString());
                     JToken obObject = jResponse["result"];
-                    JEnumerable<JToken> incidentStatus = (JEnumerable<JToken>)obObject.Values("name");
-                    foreach (var item in incidentStatus)
+                    
+                    JEnumerable<JToken> labelName = (JEnumerable<JToken>)obObject.Values("");
+                    //return labelName.ToString();
+                    foreach (var item in labelName)
                     {
                         if (item != null)
-                            return ((JValue)item).Value.ToString();
+                        {
+                            return(((JValue)item).Value.ToString());
+                            //return GetTableDetails(labelDetails);
+                        }
                     }
                 }
-                return String.Empty;
+
+                return string.Empty;
             }
             catch(Exception e)
             {
