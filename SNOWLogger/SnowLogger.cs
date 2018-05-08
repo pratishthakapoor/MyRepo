@@ -24,8 +24,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
             {
                 string username = ConfigurationManager.AppSettings["ServiceNowUserName"];
                 string password = ConfigurationManager.AppSettings["ServiceNowPassword"];
-                string URL = "https://dev56432.service-now.com/api/now/table/sys_db_object";
-                //?sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
+                string URL = "https://dev56432.service-now.com/api/now/table/sys_db_object?sysparm_query=sys_id=4c3fb9e6b96013006517ce7df7ee4671";
                 var auth = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
                 HttpWebRequest RetrieveRequest = WebRequest.Create(URL) as HttpWebRequest;
