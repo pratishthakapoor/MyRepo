@@ -116,7 +116,7 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                     await context.PostAsync(replyMessage);
 
                 }
-                    
+
                 else if (statusDetails == "2")
                 {
                     var status = "Your ticket is in progress.";
@@ -128,14 +128,14 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                     await context.PostAsync(replyMessage);
 
                 }
-                    
+
                 else if (statusDetails == "3")
                 {
                     await context.PostAsync("Your ticket is been kept on hold.");
 
-                    
+
                 }
-                    
+
                 else if (statusDetails == "6")
                 {
                     var status = "Your ticket is resolved.";
@@ -151,8 +151,8 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                     //await context.PostAsync("For the ticket id " + response+ " solution fetched by our team is : " + resolveDetails);
                     await context.PostAsync(replyMessage);
                 }
-                   
-                    
+
+
                 else if (statusDetails == "7")
                 {
                     var status = "Your ticket has been closed by our team";
@@ -169,9 +169,12 @@ namespace Microsoft.Bot.Sample.ProacticeBot
                     //await context.PostAsync("Reasons for closing the ticket: " + resolveDetails);
                     await context.PostAsync(replyMessage);
                 }
-                    
-                else
+
+                else if (statusDetails == "8")
                     await context.PostAsync("Our team cancelled your ticket");
+
+                else
+                    await context.PostAsync("Please check the ticket details. There is some mistake");
 
                // Console.WriteLine(statusDetails);
             }
