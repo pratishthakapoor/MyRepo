@@ -170,7 +170,7 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                 try
                 {
                     var ticketForm = new FormDialog<TicketModel>(new TicketModel(), TicketModel.BuildForm, FormOptions.PromptInStart);
-                    //context.Call(ticketForm, getKeyPhrases);
+                    //context.Call(ticketForm, getUserSentiment);
                     context.Call(ticketForm, ChildDialogComplete);
 
                 }
@@ -493,6 +493,19 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                             /**
                              * SQL command to insert data into the table dbo.BotDetails
                              **/
+
+                            if (sentence.Contact == null)
+                            {
+                                sentence.Contact = "None";
+                            }
+
+                            else if (sentence.PhoneContact == null)
+                            {
+                                sentence.PhoneContact = "None";
+                            }
+
+                            else
+                                Console.WriteLine("Some error occured");
 
                             SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
                                        SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
