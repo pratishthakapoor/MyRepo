@@ -134,33 +134,33 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                  * SQL command to insert data into the table dbo.BotDetails
                                  **/
 
-                                /*SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
+                                SqlCommand insertCommand = new SqlCommand(@"INSERT INTO dbo.BotDetails (TokenDescription, ServerDetails, MiddlewareDetails, DatabaseDetails, TokenDetails,
                                        SentimentScore, UserName, EmailId, ContactNo) VALUES (@TokenDescription, @ServerDetails, @MiddlewareDetails, @DatabaseDetails, @TokenDetails, @SentimentScore,
-                                       @UserName, @EmailId, @ContactNo)", connection);*/
+                                       @UserName, @EmailId, @ContactNo)", connection);
 
-                                /*if (state.PhoneContact == null)
-                                {
-                                    state.PhoneContact = "None";
-                                }
+                            if (state.PhoneContact == null)
+                            {
+                                    state.PhoneContact = "0";
+                            }
                                 else
-                                    state.Contact = "None";*/
+                                    state.Contact = "None";
 
                                 /**
                                  * Commands to insert the user response to the database 
                                  **/
 
-                                /*insertCommand.Parameters.Add(new SqlParameter("TokenDescription", state.Desc));
+                                insertCommand.Parameters.Add(new SqlParameter("TokenDescription", state.Desc));
                                 insertCommand.Parameters.Add(new SqlParameter("ServerDetails", state.ServerName));
                                 insertCommand.Parameters.Add(new SqlParameter("MiddlewareDetails", state.MiddlewareName));
-                                insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", state.DatabaseName));
+                                insertCommand.Parameters.Add(new SqlParameter("DatabaseDetails", state.DBName));
                                 insertCommand.Parameters.Add(new SqlParameter("TokenDetails", System.DateTimeOffset.Now));
                                 insertCommand.Parameters.Add(new SqlParameter("SentimentScore", sentimentScore));
                                 insertCommand.Parameters.Add(new SqlParameter("UserName", state.Name));
                                 insertCommand.Parameters.Add(new SqlParameter("EmailId", state.Contact));
                                 insertCommand.Parameters.Add(new SqlParameter("ContactNo", state.PhoneContact));
 
-                                var DBresult = insertCommand.ExecuteNonQuery();*/
-                                /*if (DBresult > 0)
+                                var DBresult = insertCommand.ExecuteNonQuery();
+                                if (DBresult > 0)
                                 {
                                     connection.Close();
 
@@ -192,13 +192,13 @@ namespace Microsoft.Bot.Sample.ProactiveBot
                                 else
                                 {
                                     await context.PostAsync("Some problem occured, Please try again after sometime");
-                                }*/
+                                }
 
                                 /**
                                  * Close the existing connection to the DB
                                  **/
 
-                                //connection.Close();
+                                connection.Close();
                             }
                             else
                             {
